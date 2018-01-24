@@ -4,8 +4,13 @@ services:
   db:
     image: postgres
   web:
-    build: ./dms
+    build:
+      context: ./dms
+      args:
+        mode: dev
     command: python3 manage.py runserver 0.0.0.0:8000
+    environment:
+      - DJANGO_SETTINGS_MODULE=global.settings.dev
     volumes:
       - ./dms:/code
     ports:
