@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
   db:
@@ -8,16 +8,17 @@ services:
       context: ./dms
       args:
         mode: dev
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:80
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.dev
     volumes:
       - ./dms:/code
     ports:
-      - "8000:8000"
+      - "80:80"
     depends_on:
       - db
   ssl-proxy:
     build: ./ssl-dev
     ports:
       - "443:443"
+
