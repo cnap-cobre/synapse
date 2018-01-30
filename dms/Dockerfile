@@ -7,5 +7,6 @@ ARG mode
 RUN mkdir /code
 WORKDIR /code
 ADD requirements/*.txt /code/requirements/
+RUN pip --version
 RUN pip install -r requirements/$mode.txt
 ADD . /code/
