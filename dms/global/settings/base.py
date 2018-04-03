@@ -31,8 +31,9 @@ SECRET_KEY = Secret.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hosted.beocat.ksu.edu', 'hosted.beocat.ksu.edu:10443']
-
+ALLOWED_HOSTS = ['hosted.beocat.ksu.edu', 'hosted.beocat.ksu.edu:10443',
+'dataverse.cnap.ksu.edu']
+CSRF_TRUSTED_ORIGINS = ['dataverse.cnap.ksu.edu']
 
 # Application definition
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.cilogon',
 
     'apps.main'
