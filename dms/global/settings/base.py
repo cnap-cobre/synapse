@@ -15,8 +15,11 @@ from .secret import Secret
 from .allauth import *
 os.environ['HTTPS'] = "on"
 
+SITE_ID = 1
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ +
+'../..')))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +33,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['hosted.beocat.ksu.edu', 'hosted.beocat.ksu.edu:10443']
 
-SITE_ID = 1
 
 # Application definition
 
@@ -46,7 +48,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.cilogon'
+    'allauth.socialaccount.providers.cilogon',
+
+    'apps.main'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +68,7 @@ ROOT_URLCONF = 'global.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
