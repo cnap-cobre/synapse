@@ -2,3 +2,4 @@ Django>=2.0
 psycopg2
 git+https://github.com/kevindice/django-allauth@4a8d6a
 agavepy==0.7.0
+django-crispy-forms

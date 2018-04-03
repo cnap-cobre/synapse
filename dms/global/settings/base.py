@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.cilogon',
 
+    'crispy_forms',
+
     'apps.main',
 ]
 
