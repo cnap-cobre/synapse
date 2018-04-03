@@ -1,33 +1,37 @@
 {% extends 'dashboard_template.html' %}
 
-{% block content_left %}
+{% block under_header_area %}
 
   {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
+    <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
     </div>
   {% endif %}
 
 
   <div>
-    <strong>Menu:</strong>
-    <ul>
+    <nav class="nav">
     {% if user.is_authenticated %}
-      <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-      <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+      <a class="nav-link" href="{% url 'account_email' %}">Change E-mail</a>
+      <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
     {% else %}
-      <li><a href="{% url 'account_login' %}">Sign In</a></li>
-      <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+      <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+      <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
     {% endif %}
-    </ul>
+    </nav>
+    <hr>
   </div>
 
+  <div>
   {% block content %}
   {% endblock %}
+  </div>
 
 {% endblock %}
