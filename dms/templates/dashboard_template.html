@@ -31,6 +31,9 @@
 
           <header class="page-header row justify-center">
             {% block header %}
+            
+
+            {% if user.is_authenticated %}
             <div class="col-md-6 col-lg-8" >
               <h1 class="float-left text-center text-md-left">Dashboard</h1>
             </div>
@@ -38,7 +41,7 @@
               <a class="btn btn-stripped dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="{% static 'images/profile-pic.jpg' %}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
                 <div class="username mt-1">
-                  <h4 class="mb-1">Username</h4>
+                  <h4 class="mb-1">{{ user.get_username }}</h4>
                   <h6 class="text-muted">Super Admin</h6>
                 </div>
               </a>
@@ -47,6 +50,13 @@
                 <a class="dropdown-item" href="#"><em class="fa fa-power-off mr-1"></em> Logout</a>
               </div>
             </div>
+            {% else %}
+            <div class="col-md-12 col-lg-12" >
+              <h1 class="float-left text-center text-md-left">Dashboard</h1>
+            </div>
+            {% endif %}
+
+
             <div class="clear"></div>
             {% endblock %}{# header #}
           </header>
