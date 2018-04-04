@@ -20,10 +20,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from apps.main import views as main_views
+from apps.accounts import views as account_views
 
 urlpatterns = [
     path('', main_views.HomePageView.as_view()),
     path('admin/', admin.site.urls),
+    path('accounts/profile/', account_views.UserProfileView.as_view()),
     path('accounts/', include('allauth.urls')),
 ]
 
