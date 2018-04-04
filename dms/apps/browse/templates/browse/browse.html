@@ -1,0 +1,25 @@
+{% extends 'dashboard_template.html' %}
+{% load file_size %}
+
+{% block under_header_area %}
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Modified</th>
+          <th>Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for file in files %}
+        <tr>
+          <td>{{ file.name }}</td>
+          <td>{{ file.lastModified }}</td>
+          <td>{{ file.length|file_size }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

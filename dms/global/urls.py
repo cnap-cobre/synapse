@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/profile/', account_views.UserProfileView.as_view()),
     path('accounts/', include('allauth.urls')),
+    path('browse/', include('apps.browse.urls')),
 ]
 
 if settings.DEBUG:
