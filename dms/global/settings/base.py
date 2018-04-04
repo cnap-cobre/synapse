@@ -52,10 +52,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.cilogon',
+    'allauth.socialaccount.providers.agave',
 
     'crispy_forms',
 
     'apps.main',
+    'apps.browse',
 ]
 
 MIDDLEWARE = [

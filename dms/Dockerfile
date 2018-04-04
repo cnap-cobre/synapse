@@ -9,4 +9,5 @@ WORKDIR /code
 ADD requirements/*.txt /code/requirements/
 RUN pip --version
 RUN pip install -r requirements/$mode.txt
+RUN pip install git+https://github.com/kevindice/django-allauth@c9c7522
 ADD . /code/
