@@ -1,21 +1,6 @@
 {% extends 'dashboard_template.html' %}
 
 {% block under_header_area %}
-
-  {% if messages %}
-    <div class="messages">
-      {% for message in messages %}
-      <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {% endfor %}
-    </div>
-  {% endif %}
-
-
   <div>
     <nav class="nav">
     {% if user.is_authenticated %}
@@ -29,9 +14,14 @@
     <hr>
   </div>
 
-  <div>
-  {% block content %}
-  {% endblock %}
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 jumbotron">
+      {% block content %}
+      {% endblock %}
+      </div>
+    </div>
   </div>
+
 
 {% endblock %}

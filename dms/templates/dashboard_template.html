@@ -17,10 +17,12 @@
             <li class="nav-item"><a class="nav-link" href="elements.html"><em class="fa fa-hand-o-up"></em> UI Elements</a></li>
             <li class="nav-item"><a class="nav-link" href="cards.html"><em class="fa fa-clone"></em> Cards</a></li>
             {% else %}
-            <li class="nav-item"><a class="nav-link" href="cards.html"><em class="fa fa-user-circle"></em> Sign In</a></li>
+            <li class="nav-item"><a class="nav-link" href="/accounts/login/"><em class="fa fa-user-circle"></em> Sign In</a></li>
             {% endif %}
           </ul>
-          <a href="#" class="logout-button"><em class="fa fa-power-off"></em> Signout</a>
+          {% if user.is_authenticated %}
+          <a href="/accounts/logout/" class="logout-button"><em class="fa fa-power-off"></em> Signout</a>
+          {% endif %}
           {% endblock %}{# navigation #}
         </nav>
 
@@ -65,25 +67,40 @@
 
           <section class="row">
             <div class="col-sm-12">
-              {% block under_header_area %}
+
+              {% if messages %}
+                <div class="messages">
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                {% endfor %}
+                </div>
+              {% endif %}
+
+            {% block under_header_area %}
+
               <section class="row">
                 <div class="col-md-12 col-lg-8">
-                  {% block content_left %}
+                {% block content_left %}
 
 
-                  {% endblock %}{# content_left #}
+                {% endblock %}{# content_left #}
                 </div>
                 <div class="col-md-12 col-lg-4">
-                  {% block content_right %}
+                {% block content_right %}
 
 
-                  {% endblock %}{# content_right #}
+                {% endblock %}{# content_right #}
                 </div>
               </section>
               <section class="row">
                 <div class="col-12 mt-1 mb-4">CNAP</div>
               </section>
-              {% endblock %}{# under_header_area #}
+            {% endblock %}{# under_header_area #}
             </div>
           </section>
           {% endblock %}{# main_content_area #}
