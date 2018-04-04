@@ -11,7 +11,7 @@
           <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
           <ul class="nav nav-pills flex-column sidebar-nav">
             {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link active" href="index.html"><em class="fa fa-dashboard"></em> Dashboard <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="/"><em class="fa fa-dashboard"></em> Dashboard <span class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link" href="widgets.html"><em class="fa fa-calendar-o"></em> Widgets</a></li>
             <li class="nav-item"><a class="nav-link" href="charts.html"><em class="fa fa-bar-chart"></em> Charts</a></li>
             <li class="nav-item"><a class="nav-link" href="elements.html"><em class="fa fa-hand-o-up"></em> UI Elements</a></li>
@@ -97,11 +97,12 @@
                 {% endblock %}{# content_right #}
                 </div>
               </section>
-              <section class="row">
-                <div class="col-12 mt-1 mb-4">CNAP</div>
-              </section>
             {% endblock %}{# under_header_area #}
             </div>
+          </section>
+          <hr>
+          <section class="row">
+            <div class="col-12 mt-1 mb-4">© 2018 CNAP Center of Biomedical Research Excellence</div>
           </section>
           {% endblock %}{# main_content_area #}
         </main>
