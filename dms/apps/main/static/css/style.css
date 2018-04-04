@@ -325,10 +325,10 @@ p {
   right: 1.25rem;
   list-style: none; }
 
-.alert {
+/*.alert {
   color: #fff; }
   .alert a {
-    color: #fff !important; }
+    color: #fff !important; }*/
 
 .no-left-margin {
   margin-left: 0; }
