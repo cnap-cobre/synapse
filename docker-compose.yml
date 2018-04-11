@@ -3,16 +3,24 @@ version: '3.3'
 services:
   db:
     image: postgres
-  dms:
+  frontend:
+    image: node:8.11.1
     build:
-      context: ./dms
+      context: ./frontend
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+  django:
+    build:
+      context: ./backend
       args:
         mode: dev
     command: python3 manage.py runserver 0.0.0.0:80
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.dev
     volumes:
-      - ./dms:/code
+      - ./backend:/code
     ports:
       - "80:80"
     depends_on:
@@ -22,5 +30,5 @@ services:
     ports:
       - "443:443"
     depends_on:
-      - dms
+      - django
 
