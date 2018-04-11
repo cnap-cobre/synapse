@@ -4,9 +4,9 @@ services:
   db:
     image: postgres
   frontend:
-    image: node:8.11.1
     build:
       context: ./frontend
+    command: npm run-script develop
     volumes:
       - ./frontend:/frontend
     ports:
