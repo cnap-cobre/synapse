@@ -3,14 +3,6 @@ version: '3.3'
 services:
   db:
     image: postgres
-  frontend:
-    build:
-      context: ./frontend
-    command: npm run-script develop
-    volumes:
-      - ./frontend:/frontend
-    ports:
-      - "3000:3000"
   django:
     build:
       context: ./backend
