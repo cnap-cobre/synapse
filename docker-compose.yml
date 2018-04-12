@@ -17,15 +17,6 @@ services:
       - "80:80"
     depends_on:
       - db
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        mode: dev
-    command: npm run start
-    volumes:
-      - ./frontend:/home/app/frontend
-      - /home/app/frontend/node_modules
   ssl-proxy:
     build: ./ssl-dev
     ports:
