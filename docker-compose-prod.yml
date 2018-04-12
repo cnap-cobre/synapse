@@ -20,14 +20,9 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - './frontend:/usr/src/app'
-      - '/usr/src/app/node_modules'
+      dockerfile: Dockerfile-prod
     ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=development
+      - '80:80'
   ssl-proxy:
     build: ./ssl-dev
     ports:
