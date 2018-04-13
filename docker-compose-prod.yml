@@ -8,13 +8,11 @@ services:
       context: ./backend
       args:
         mode: dev
-    command: python3 manage.py runserver 0.0.0.0:80
+    command: sh -c "python manage.py collectstatic --noinput; gunicorn config.wsgi:application --name dms --bind 0.0.0.0:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=global.settings.dev
+      - DJANGO_SETTINGS_MODULE=global.settings.prod
     volumes:
       - ./backend:/code
-    ports:
-      - "80:80"
     depends_on:
       - db
   frontend:
