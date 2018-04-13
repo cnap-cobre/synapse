@@ -13,6 +13,7 @@ services:
       - DJANGO_SETTINGS_MODULE=global.settings.dev
     volumes:
       - ./backend:/code
+      - stats:/code/stats
     ports:
       - "3001:3001"
     depends_on:
@@ -24,6 +25,7 @@ services:
     volumes:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
+      - stats:/usr/src/app/stats
     ports:
       - '3000:3000'
     environment:
@@ -36,3 +38,5 @@ services:
     depends_on:
       - django
 
+volumes:
+  stats:
