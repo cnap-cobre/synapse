@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.agave',
 
     'crispy_forms',
+    'webpack_loader',
 
     'apps.main',
     'apps.browse',

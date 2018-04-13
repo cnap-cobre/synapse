@@ -1,0 +1,10 @@
+{% extends 'dashboard_template.html' %}
+{% load render_bundle from webpack_loader %}
+
+{% block under_header_area %}
+  <div id="root"></div>
+{% endblock %}
+
+{% block extra_body %}
+ {% render_bundle 'main' %}
+{% endblock %}

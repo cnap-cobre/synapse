@@ -19,3 +19,7 @@ def browse_beocat_home(request):
     except SocialAccount.DoesNotExist:
         files = []
     return render(request, 'browse/browse.html', {'files': files})
+
+@login_required
+def react_browse(request):
+    return render(request, 'browse/react-browse.html', {})

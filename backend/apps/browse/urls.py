@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.browse_beocat_home)        
+    path('', views.react_browse),
 ]
