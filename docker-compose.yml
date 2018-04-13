@@ -30,6 +30,7 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+      - PUBLIC_URL=/wp
   ssl-proxy:
     build: ./ssl-dev
     ports:
