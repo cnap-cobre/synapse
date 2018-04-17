@@ -7,24 +7,35 @@ services:
     build:
       context: ./backend
       args:
-        mode: dev
+        mode: prod
     command: sh -c "python manage.py collectstatic --noinput; gunicorn config.wsgi:application --name dms --bind 0.0.0.0:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.prod
     volumes:
       - ./backend:/code
+      - stats:/code/stats
     depends_on:
       - db
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile-prod
+    volumes:
+      - './frontend:/usr/src/app'
+      - '/usr/src/app/node_modules'
+      - stats:/usr/src/app/stats
     ports:
       - '80:80'
+    environment:
+      - NODE_ENV=production
+      - PUBLIC_URL=/wp
   ssl-proxy:
     build: ./ssl-dev
     ports:
       - "443:443"
+      - "80:80"
     depends_on:
       - django
 
+volumes:
+  stats:
