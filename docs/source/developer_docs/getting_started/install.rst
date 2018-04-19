@@ -26,7 +26,6 @@ Configuration
 Go into the project directory: ``cd synapse``
 
 Copy the ``secret.py`` template and enter secret parameters:
-
 ``cp backend/global/settings/secret.py.example backend/global/settings/secret.py``
 
 As of now, only the Django ``SECRET_KEY`` is defined in here.  This should be
@@ -55,12 +54,11 @@ Postgres and Nginx.
 At this point, you'll probably see some errors related to the database having
 none of the expected tables.
 
-Ctrl+C to kill the containers, then migrate the database: ``docker-compose run backend python manage.py migrate``
+Ctrl+C to kill the containers, then migrate the database:
+``docker-compose run backend python manage.py migrate``
 
 Chance are, you'll probably want to crate a superuser at this point.
-
 ``docker-compose run backend python manage.py createsuperuser``
 
 And start it back up:
-
 ``docker-compose up`` (add ``-f docker-compose-prod.yml`` for production)
