@@ -5,5 +5,5 @@ services:
     volumes:
       - ".:/doc"
     ports:
-      - "3003:3003"
-    command: sphinx-autobuild -b html -p 3003 -H 0.0.0.0 source build
+      - "2999:2999"
+    command: sphinx-autobuild -b html -p 2999 -H 0.0.0.0 source build
