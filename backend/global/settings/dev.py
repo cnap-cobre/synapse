@@ -14,5 +14,5 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 ALLOWED_HOSTS += ['localhost']
-
+CSRF_TRUSTED_ORIGINS += ['localhost']
 
