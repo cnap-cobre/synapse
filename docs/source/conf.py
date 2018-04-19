@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Hyperion'
+project = u'Synapse'
 copyright = u'2018, CNAP Center of Biomedical Research Excellence'
 author = u'Kevin Dice'
 
@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Hyperiondoc'
+htmlhelp_basename = 'Synapsedoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -129,7 +129,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Hyperion.tex', u'Hyperion Documentation',
+    (master_doc, 'Synapse.tex', u'Synapse Documentation',
      u'Kevin Dice', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'hyperion', u'Hyperion Documentation',
+    (master_doc, 'synapse', u'Synapse Documentation',
      [author], 1)
 ]
 
@@ -150,8 +150,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Hyperion', u'Hyperion Documentation',
-     author, 'Hyperion', 'One line description of project.',
+    (master_doc, 'Synapse', u'Synapse Documentation',
+     author, 'Synapse', 'One line description of project.',
      'Miscellaneous'),
 ]
 
