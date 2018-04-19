@@ -1,0 +1,9 @@
+version: "3"
+services:
+  sphinx:
+    image: "nickjer/docker-sphinx"
+    volumes:
+      - ".:/doc"
+    ports:
+      - "3003:3003"
+    command: sphinx-autobuild -b html -p 3003 -H 0.0.0.0 source build
