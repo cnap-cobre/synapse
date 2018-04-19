@@ -1,4 +1,6 @@
-## Getting Started
+# Synapse
+
+![Read the Docs Badge](https://readthedocs.org/projects/cnap-synapse/badge/?version=latest)
 
 1. Copy .../dms/global/settings/secret.example.py to secret.py in the same directory
 2. Update the secret key in secret.py to something random.
