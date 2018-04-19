@@ -4,10 +4,15 @@ ENV PYTHONUNBUFFERED 1
 # Passed in from docker-compose file
 ARG mode
 
-RUN mkdir /code
+USER root
+
 WORKDIR /code
 ADD requirements/*.txt /code/requirements/
-RUN pip --version
 RUN pip install -r requirements/$mode.txt
 RUN pip install git+https://github.com/kevindice/django-allauth@c9c7522
-ADD . /code/
+
+RUN groupadd -r appuser -g 1000 \
+    && useradd -u 1000 -r -g appuser -s /bin/false -c "App User" appuser \
+    && chmod -R 755 /code
+
+USER appuser
