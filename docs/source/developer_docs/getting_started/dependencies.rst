@@ -13,8 +13,25 @@ group so that you don't have to use sudo to run docker or docker-compose.
 
 ``sudo usermod -aG docker $USER``
 
-On Windows you must have Windows 10 Pro, Enterprise, or Education and
-Microsoft Hyper-V to install Docker Engine.  If you don't, you'll need to
-install Docker Toolbox instead (https://docs.docker.com/toolbox/overview/)
-This will install VirtualBox and a linux VM, and your containers will
-run inside of this VM instead of directly on your host.
+Windows
+-------
+
+If you use Windows, you have my condolances.
+
+For Windows 10 Professional or Enterprise 64-bit, use
+`Docker for Windows <https://www.docker.com/docker-windows>`_.
+
+For any other version of Windows, get
+`Docker Toolbox <https://docs.docker.com/toolbox/overview/>`_.  This will
+install VirtualBox, and your Docker containers will run inside of a Linux VM.
+
+Alternatively, you may choose to spin up a Linux VM and run your containers
+inside of it directly.
+
+
+Mac
+---
+
+Docker for Mac requires OS X El Capitan 10.11 or newer with Intel hardware
+support for MMU virtualization (2010 or newer).  If your system does not
+satisfy these requirements, you can install Docker Toolbox.

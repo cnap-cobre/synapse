@@ -9,3 +9,4 @@ Getting Started
    primer
    dependencies
    install
+   these_docs
