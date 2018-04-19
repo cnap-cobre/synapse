@@ -6,4 +6,4 @@ services:
       - ".:/doc"
     ports:
       - "2999:2999"
-    command: sphinx-autobuild -b html -p 2999 -H 0.0.0.0 source build
+    command: sphinx-autobuild -b html -p 2999 -H 0.0.0.0 --ignore *.swp source build
