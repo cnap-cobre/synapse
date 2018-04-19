@@ -31,8 +31,8 @@ services:
     environment:
       - NODE_ENV=development
       - PUBLIC_URL=/wp
-  ssl-proxy:
-    build: ./ssl-dev
+  webserver:
+    build: ./webserver
     ports:
       - "443:443"
       - "80:80"

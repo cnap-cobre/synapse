@@ -3,7 +3,7 @@ version: '3.3'
 services:
   db:
     image: postgres
-  django:
+  backend:
     build:
       context: ./backend
       args:
@@ -29,13 +29,13 @@ services:
     environment:
       - NODE_ENV=production
       - PUBLIC_URL=/wp
-  ssl-proxy:
-    build: ./ssl-dev
+  webserver:
+    build: ./webserver
     ports:
       - "443:443"
       - "80:80"
     depends_on:
-      - django
+      - backend
 
 volumes:
   stats:
