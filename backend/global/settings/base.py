@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'webpack_loader',
 
     'apps.main',
+    'apps.profile',
     'apps.browse',
 ]
 
