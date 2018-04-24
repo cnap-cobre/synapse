@@ -1,0 +1,5 @@
+# We include this requirements.txt file so that Github can build a
+# dependency graph and notify us of any new security vulnerabilities.
+-r requirements/base.txt
+-r requirements/dev.txt
+-r requirements/prod.txt
