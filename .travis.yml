@@ -15,7 +15,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - cp backend/global/settings/secret.py.example backend/global/settings/secret.py
   - docker-compose -f docker-compose-test.yml build
-  - docker-compose -f docker-compose-test.yml create db
+  - docker-compose -f docker-compose-test.yml create
   - docker-compose -f docker-compose-test.yml start db
   - docker-compose -f docker-compose-test.yml run frontend npm test
   - docker-compose -f docker-compose-test.yml run backend python manage.py test
