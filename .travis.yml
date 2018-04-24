@@ -3,6 +3,8 @@ sudo: required
 env:
  - DOCKER_COMPOSE_VERSION=1.18.0
 
+language: generic
+
 services:
   - docker
 
