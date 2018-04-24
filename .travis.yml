@@ -14,5 +14,5 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose -f docker-compose-test.yml build
-  - docker-compose -f docker-compsoe-test.yml run frontend npm test
+  - docker-compose -f docker-compose-test.yml run frontend npm test
 
