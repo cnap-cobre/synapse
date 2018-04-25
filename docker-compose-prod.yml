@@ -30,7 +30,9 @@ services:
       - NODE_ENV=production
       - PUBLIC_URL=/wp
   webserver:
-    build: ./webserver
+    build:
+      context: ./webserver
+      dockerfile: Dockerfile-prod
     ports:
       - "443:443"
       - "80:80"

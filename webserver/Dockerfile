@@ -1,4 +1,4 @@
 FROM nginx:alpine
 
 ADD certs/* /etc/nginx/
-ADD conf/default.conf /etc/nginx/conf.d/default.conf
+ADD conf/local.conf /etc/nginx/conf.d/default.conf

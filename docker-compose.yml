@@ -32,7 +32,9 @@ services:
       - NODE_ENV=development
       - PUBLIC_URL=/wp
   webserver:
-    build: ./webserver
+    build:
+      context: ./webserver
+      dockerfile: Dockerfile
     ports:
       - "443:443"
       - "80:80"
