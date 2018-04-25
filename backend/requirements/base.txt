@@ -3,4 +3,4 @@ psycopg2-binary==2.7.4
 agavepy==0.7.0
 django-crispy-forms==1.7.2
 django-webpack-loader==0.6.0
-
+django-http-proxy==0.4.3
