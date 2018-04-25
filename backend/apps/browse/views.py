@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.shortcuts import render
 from agavepy.agave import Agave, Token
+from apps.profile.models import Profile
 
 @login_required
 def browse_beocat_home(request):
@@ -22,4 +23,7 @@ def browse_beocat_home(request):
 
 @login_required
 def react_browse(request):
-    return render(request, 'browse/react-browse.html', {})
+    user = request.user
+    profile = user.profile
+    print(profile.tokens)
+    return render(request, 'browse/react-browse.html', {'tokens': profile.tokens})
