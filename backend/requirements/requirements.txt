@@ -1,5 +1,8 @@
-# We include this requirements.txt file so that Github can build a
+# We include this requirements.txt file so that Github and Snyk can build a
 # dependency graph and notify us of any new security vulnerabilities.
--r base.txt
--r dev.txt
--r prod.txt
+
+# This is *not* used in any other build or install process.
+
+-r requirements/base.txt
+-r requirements/dev.txt
+-r requirements/prod.txt
