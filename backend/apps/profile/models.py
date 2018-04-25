@@ -36,8 +36,8 @@ class Profile(models.Model):
                 'expires_in': (tk.expires_at - now).total_seconds()
             }
             client_id = tk.app.client_id
-            refresh_url = get_refresh_token_url(tk.app)
-            protected_url = get_protected_url(tk.app)
+            refresh_url = get_refresh_token_url(tk.app.provider)
+            protected_url = get_protected_url(tk.app.provider)
 
             extra = {
                 'client_id': client_id,
