@@ -6,6 +6,10 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse?ref=badge_shield)
 [![Dependency Freshness](https://david-dm.org/cnap-cobre/synapse/status.svg?path=frontend)](https://david-dm.org/cnap-cobre/synapse?path=frontend)
 
+Python: [![Known Vulnerabilities](https://snyk.io/test/github/cnap-cobre/synapse/badge.svg?targetFile=backend%2Frequirements.txt)](https://snyk.io/test/github/cnap-cobre/synapse?targetFile=backend%2Frequirements.txt)
+
+JavaScript (frontend): [![Known Vulnerabilities](https://snyk.io/test/github/cnap-cobre/synapse/badge.svg?targetFile=frontend%2Fpackage.json)](https://snyk.io/test/github/cnap-cobre/synapse?targetFile=frontend%2Fpackage.json)
+
 Documentation:  https://cnap-synapse.readthedocs.io/en/latest/
 
 
