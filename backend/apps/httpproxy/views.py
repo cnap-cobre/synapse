@@ -39,6 +39,11 @@ class HttpProxy(View):
     The base URL that the proxy should forward requests to.
     """
 
+    url_name = NONE
+    """
+    The url name as typically defined in urls.py
+    """
+
     mode = None
     """
     The mode that the proxy should run in. Available modes are ``record`` and
@@ -70,7 +75,7 @@ class HttpProxy(View):
     _msg = 'Response body: \n%s'
 
     def dispatch(self, request, *args, **kwargs):
-        self.url = request.path[ len(reverse('ag')): ]
+        self.url = request.path[ len(reverse(self.url_name)): ]
         self.original_request_path = request.path
         request = self.normalize_request(request)
         if self.mode == 'play':
