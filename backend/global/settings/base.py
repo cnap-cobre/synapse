@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'apps.main',
     'apps.profile',
     'apps.browse',
+    'apps.agave_proxy',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +162,8 @@ STATIC_URL = '/dj-static/'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# API Base URLs for Proxying Requests
+API_BASE_URL_AGAVE = 'https://public.agaveapi.co'
+
