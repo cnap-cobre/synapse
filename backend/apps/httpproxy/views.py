@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import re
+import requests
 
 from django.http import HttpResponse
 from django.utils.six.moves import urllib
@@ -143,14 +144,23 @@ class HttpProxy(View):
         url = urllib.parse(self.base_url)
         return ProxyRecorder(domain=url.hostname, port=(url.port or 80))
 
-    def get(self, *args, **kwargs):
-        return self.get_response()
+    def get(self, request, *args, **kwargs):
+        headers = {
+            'Authorization': 'Bearer ' + self.get_auth_token(request),
+        }
+        request_url = self.get_full_url(self.url)
+        return HttpResponse(requests.get(request_url, headers=headers))
 
     def post(self, request, *args, **kwargs):
-        headers = {}
+        headers = {
+            'Authorization': 'Bearer ' + self.get_auth_token(request),
+        }
         if request.META.get('CONTENT_TYPE'):
             headers['Content-type'] = request.META.get('CONTENT_TYPE')
-        return self.get_response(body=request.body, headers=headers)
+
+        request_url = self.get_full_url(self.url)
+        body = request.body
+        return HttpResponse(requests.post(request_url, headers=headers, data=body))
 
     def get_full_url(self, url):
         """
@@ -161,22 +171,5 @@ class HttpProxy(View):
         request_url += '?%s' % param_str if param_str else ''
         return request_url
 
-    def create_request(self, url, body=None, headers={}):
-        request = urllib.request.Request(url, body, headers)
-        logger.info('%s %s' % (request.get_method(), request.get_full_url()))
-        return request
-
-    def get_response(self, body=None, headers={}):
-        request_url = self.get_full_url(self.url)
-        request = self.create_request(request_url, body=body, headers=headers)
-        response = urllib.request.urlopen(request)
-        try:
-            response_body = response.read()
-            status = response.getcode()
-            logger.debug(self._msg % response_body)
-        except urllib.error.HTTPError as e:
-            response_body = e.read()
-            logger.error(self._msg % response_body)
-            status = e.code
-        return HttpResponse(response_body, status=status,
-                            content_type=response.headers['content-type'])
+    def get_auth_token(self, request):
+        return 'cake'
