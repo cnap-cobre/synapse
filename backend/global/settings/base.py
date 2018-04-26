@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'apps.main',
     'apps.profile',
     'apps.browse',
-    'apps.agave_proxy',
+    'apps.httpproxy',
 ]
 
 MIDDLEWARE = [
