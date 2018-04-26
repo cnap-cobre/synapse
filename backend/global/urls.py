@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 
 from apps.main import views as main_views
 from apps.accounts import views as account_views
+#from apps.agave_proxy.views import AgaveHttpProxy, HttpProxy
 
 urlpatterns = [
     path('', main_views.home_page),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('accounts/profile/', account_views.UserProfileView.as_view()),
     path('accounts/', include('allauth.urls')),
     path('browse/', include('apps.browse.urls')),
+    #re_path(r'^agave/', HttpProxy.as_view(base_url=settings.API_BASE_URL_AGAVE), name='ag'),
+    #path('dropbox/', DropboxyHttpProxy.as_view(base_url=settings.API_BASE_URL_DROPBOX)),
 ]
 
 if settings.DEBUG:
