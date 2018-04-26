@@ -8,8 +8,8 @@ try:
 except ImportError:
     from django.utils.hashcompat import md5_constructor
 
-from httpproxy.exceptions import RequestNotRecorded, ResponseUnsupported
-from httpproxy.models import Request, Response
+from .exceptions import RequestNotRecorded, ResponseUnsupported
+from .models import Request, Response
 
 
 logger = logging.getLogger(__name__)

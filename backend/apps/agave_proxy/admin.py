@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from httpproxy.models import Request, RequestParameter, Response
+from .models import Request, RequestParameter, Response
 
 
 class ResponseInline(admin.StackedInline):

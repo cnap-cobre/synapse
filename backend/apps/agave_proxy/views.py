@@ -7,7 +7,7 @@ from django.utils.six.moves import urllib
 from django.views.generic import View
 from django.urls import reverse
 
-from httpproxy.recorder import ProxyRecorder
+from .recorder import ProxyRecorder
 
 
 logger = logging.getLogger(__name__)
@@ -21,7 +21,7 @@ class HttpProxy(View):
 
     In its most basic usage::
 
-            from httpproxy.views import HttpProxy
+            from .views import HttpProxy
 
             urlpatterns += patterns('',
                 (r'^my-proxy/(?P<url>.*)$',
