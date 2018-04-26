@@ -39,7 +39,7 @@ class HttpProxy(View):
     The base URL that the proxy should forward requests to.
     """
 
-    url_name = NONE
+    url_name = None
     """
     The url name as typically defined in urls.py
     """
