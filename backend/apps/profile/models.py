@@ -14,9 +14,13 @@ from .util import get_refresh_token_url, get_protected_url
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     institution = models.CharField(max_length=100, default='', blank=True)
-    
+
     def __str__(self):
         return str(self.user)
+
+    @classmethod
+    def from_user(cls, user):
+        return Profile.objects.filter(user=user).get()
 
     @property
     def tokens(self):
