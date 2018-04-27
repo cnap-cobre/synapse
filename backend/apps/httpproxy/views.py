@@ -120,13 +120,18 @@ class HttpProxy(LoginRequiredMixin, View):
         files (images, etc.).
 
         .. note::
-            The rewrite logic uses a fairly simple regular expression to look for
-            "src", "href" and "action" attributes with a value starting with "/"
-            – your results may vary.
+            Sometimes API responses contain urls to other related resources.
+            Bescause we are proxying requests, these are no longer the correct
+            urls.  This function replaces the hostname of the end service with
+            the hostname (and 'mount point' if not root) of the proxy.
         """
         proxy_root = self.original_request_path.rsplit(request.path, 1)[0]
-        response.content = REWRITE_REGEX.sub(r'\1{}/'.format(proxy_root),
-                response.content)
+        proxy_base = request.scheme + '://' + request.get_host() + proxy_root
+        response.content = response.content.decode('utf-8').replace(
+            self.base_url,
+            proxy_base
+        )
+
         return response
 
     def play(self, request):

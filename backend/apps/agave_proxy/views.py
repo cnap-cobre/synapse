@@ -1,9 +1,13 @@
 from django.utils import timezone
+from django.conf import settings
 
 from apps.httpproxy.views import HttpProxy
 from apps.profile.models import Profile
 
 class AgaveProxy(HttpProxy):
+    base_url = settings.API_BASE_URL_AGAVE
+    rewrite = True
+
     def get_auth_token(self, request):
         profile = Profile.from_user(request.user)
         agave_tokens = profile.tokens.filter(app__provider='agave')
@@ -17,7 +21,6 @@ class AgaveProxy(HttpProxy):
 
         # Renew if token has expired
         if token.expires_at < timezone.now():
-            print('Renewing tokens')
             profile.renew_tokens()
             return profile.tokens.filter(app__provider='agave').get().token
 

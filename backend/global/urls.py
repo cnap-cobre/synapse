@@ -30,7 +30,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('browse/', include('apps.browse.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(
-        base_url=settings.API_BASE_URL_AGAVE,
         url_name='agpx'
     ), name='agpx'),
     #path('dropbox/', DropboxyHttpProxy.as_view(base_url=settings.API_BASE_URL_DROPBOX)),
