@@ -3,6 +3,8 @@ version: '3.3'
 services:
   db:
     image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
   backend:
     build:
       context: ./backend
@@ -41,3 +43,4 @@ services:
 
 volumes:
   stats:
+  db_data:
