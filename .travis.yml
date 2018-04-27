@@ -19,7 +19,7 @@ before_install:
   - docker-compose -f docker-compose-test.yml start db
   - docker-compose -f docker-compose-test.yml run frontend npm test
   - docker-compose -f docker-compose-test.yml run backend python manage.py test
-  - bash -c 'docker-compose -f docker-compose-test.yml run frontend' &
+  - bash -c 'docker-compose -f docker-compose-test.yml --exit-code-from frontend run frontend' &
   - last_pid=$!
   - sleep 10
   - kill -KILL $last_pid
