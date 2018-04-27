@@ -172,4 +172,6 @@ class HttpProxy(View):
         return request_url
 
     def get_auth_token(self, request):
-        return 'cake'
+        raise NotImplementedError(
+            'Override with your own token fetching function'
+        )
