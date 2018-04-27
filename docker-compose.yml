@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     volumes:
-      - db_data:/var/lib/postgresql
+      - db_data:/var/lib/postgresql/data
   backend:
     build:
       context: ./backend
