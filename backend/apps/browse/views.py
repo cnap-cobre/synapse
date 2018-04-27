@@ -23,7 +23,4 @@ def browse_beocat_home(request):
 
 @login_required
 def react_browse(request):
-    user = request.user
-    profile = user.profile
-    print(profile.tokens)
-    return render(request, 'browse/react-browse.html', {'tokens': profile.tokens})
+   return render(request, 'browse/react-browse.html')
