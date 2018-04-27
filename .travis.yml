@@ -25,4 +25,4 @@ before_script:
 script:
   - docker-compose -f docker-compose-test.yml run frontend npm test
   - docker-compose -f docker-compose-test.yml run backend python manage.py test
-  - docker-compose -f docker-compose-test.yml run frontend
+  - docker-compose -f docker-compose-test.yml run frontend npm build
