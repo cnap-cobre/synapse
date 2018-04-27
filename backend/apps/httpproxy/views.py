@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.utils.six.moves import urllib
 from django.views.generic import View
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .recorder import ProxyRecorder
 
@@ -16,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 REWRITE_REGEX = re.compile(r'((?:src|action|href)=["\'])/(?!\/)')
 
-class HttpProxy(View):
+class HttpProxy(LoginRequiredMixin, View):
     """
     Class-based view to configure Django HTTP Proxy for a URL pattern.
 
@@ -71,6 +72,11 @@ class HttpProxy(View):
     at the root. By setting this attribute to ``True``, the response will be
     :meth:`rewritten <httpproxy.views.HttpProxy.rewrite_response>` to try to
     fix the paths.
+    """
+
+    raise_exception = True
+    """
+    This tells the LoginRequiredMixin to throw a PermissionDenied exception (403)
     """
 
     _msg = 'Response body: \n%s'
