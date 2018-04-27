@@ -13,13 +13,16 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+
+install:
   - cp backend/global/settings/secret.py.example backend/global/settings/secret.py
   - docker-compose -f docker-compose-test.yml build
   - docker-compose -f docker-compose-test.yml up --no-start
+
+before_script:
   - docker-compose -f docker-compose-test.yml start db
-  - docker-compose -f docker-compose-test.yml --exit-code-from frontend run frontend npm test
-  - docker-compose -f docker-compose-test.yml --exit-code-from backend run backend python manage.py test
-  - bash -c 'docker-compose -f docker-compose-test.yml --exit-code-from frontend run frontend' &
-  - last_pid=$!
-  - sleep 10
-  - kill -KILL $last_pid
+
+script:
+  - docker-compose -f docker-compose-test.yml run frontend npm test
+  - docker-compose -f docker-compose-test.yml run backend python manage.py test
+  - docker-compose -f docker-compose-test.yml run frontend
