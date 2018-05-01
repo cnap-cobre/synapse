@@ -22,6 +22,7 @@ from django.contrib import admin
 from apps.main import views as main_views
 from apps.accounts import views as account_views
 from apps.agave_proxy.views import AgaveProxy
+from apps.dropbox_proxy.views import DropboxProxy, DropboxApiProxy, DropboxContentProxy
 
 urlpatterns = [
     path('', main_views.home_page),
@@ -32,8 +33,16 @@ urlpatterns = [
     re_path(r'^agave/', AgaveProxy.as_view(
         url_name='agpx'
     ), name='agpx'),
-    #path('dropbox/', DropboxyHttpProxy.as_view(base_url=settings.API_BASE_URL_DROPBOX)),
-]
+    re_path(r'^dropbox/api/', DropboxApiProxy.as_view(
+        url_name='dbapipx'
+    ), name='dbapipx'),
+    re_path(r'^dropbox/content/', DropboxContentProxy.as_view(
+        url_name='dbcontentpx'
+    ), name='dbcontentpx'),
+    re_path(r'^dropbox/', DropboxProxy.as_view(
+        url_name='dbpx'
+    ), name='dbpx'),
+] 
 
 if settings.DEBUG:
     import debug_toolbar

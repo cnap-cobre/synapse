@@ -166,4 +166,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # API Base URLs for Proxying Requests
 API_BASE_URL_AGAVE = 'https://public.agaveapi.co'
-
