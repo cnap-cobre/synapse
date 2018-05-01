@@ -29,10 +29,7 @@ services:
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
     ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=development
-      - PUBLIC_URL=/wp
+      - "3000:3000"
   webserver:
     build:
       context: ./webserver

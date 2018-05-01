@@ -149,8 +149,8 @@ USE_TZ = True
 # SPA React Webpack Config
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': '',
-        'STATS_FILE': os.path.join(BASE_DIR, 'stats/webpack-stats.dev.json'),
+        'BUNDLE_DIR_NAME': '../static/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'stats/stats.json'),
     }
 }
 
