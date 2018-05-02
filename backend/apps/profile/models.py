@@ -8,12 +8,29 @@ from datetime import datetime, timedelta
 from requests_oauthlib import OAuth2Session
 
 from allauth.socialaccount.models import SocialAccount, SocialToken
+from allauth.account.models import EmailAddress
+from django_gravatar.helpers import get_gravatar_url, has_gravatar, \
+        get_gravatar_profile_url, calculate_gravatar_hash
 
 from .util import get_refresh_token_url, get_protected_url
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     institution = models.CharField(max_length=100, default='', blank=True)
+
+    @property
+    def gravatar(self):
+        email = EmailAddress.objects.get_primary(user=self.user)
+        return {
+            'url': get_gravatar_url(email, size=150),
+            'exists': has_gravatar(email),
+            'profile': get_gravatar_profile_url(email),
+            'hash': calculate_gravatar_hash(email)
+        }
+
+    @property
+    def primary_email(self):
+        return EmailAddress.objects.get_primary(user=self.user)
 
     def __str__(self):
         return str(self.user)

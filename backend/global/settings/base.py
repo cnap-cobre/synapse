@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'webpack_loader',
     'compressor',
+    'django_gravatar',
 
     'apps.main',
     'apps.profile',
