@@ -18,6 +18,7 @@
     </a>
   </div>
   <div class="sidebar-wrapper">
+    {% if user.is_authenticated %}
     <div class="user">
       <div class="photo">
         {% gravatar user.profile.primary_email.email 34 %}
@@ -56,6 +57,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
     <ul class="nav">
       {% block navigation %}
       <li>
