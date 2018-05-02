@@ -20,14 +20,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from apps.main import views as main_views
-from apps.accounts import views as account_views
 from apps.agave_proxy.views import AgaveProxy
 from apps.dropbox_proxy.views import DropboxProxy, DropboxApiProxy, DropboxContentProxy
 
 urlpatterns = [
     path('', main_views.home_page),
     path('admin/', admin.site.urls),
-    path('accounts/profile/', account_views.UserProfileView.as_view()),
+    path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
     path('browse/', include('apps.browse.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(

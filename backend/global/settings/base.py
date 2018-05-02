@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'apps.profile',
     'apps.accounts',
     'allauth',
     'allauth.account',
@@ -60,7 +61,6 @@ INSTALLED_APPS = [
     'django_gravatar',
 
     'apps.main',
-    'apps.profile',
     'apps.browse',
     'apps.httpproxy',
 ]

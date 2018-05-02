@@ -1,0 +1,33 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% load gravatar %}
+
+{% block main_content_area %}
+<div class="row">
+  <div class="col-lg-4 col-md-5">
+    <div class="card card-user">
+      <div class="image">
+        <img src="{% static 'img/background.jpg' alt='User profile background' %}"/>
+      </div>
+      <div class="card-content">
+        <div class="author">
+          <img class="avatar border-white" src="{% gravatar_url user.profile.primary_email.email 100 %}" alt="User profile photo">
+          <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}<br>
+            <a href="/accounts/profile"><small>{{user}}</small></a>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div><!-- end col-lg-4 col-md-5 -->
+  <div class="col-lg-8 col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Profile</h4>
+      </div>
+      <div class="card-content">
+        
+      </div>
+    </div>
+  </div><!-- end col-lg-8 col-md-7 -->
+</div>
+{% endblock %}{# main_content_area #}
