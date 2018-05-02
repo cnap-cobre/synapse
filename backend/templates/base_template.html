@@ -28,7 +28,11 @@
     <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet" />
 </head>
 
+{% if request.COOKIES.sidebar_mini %}
+<body class="sidebar-mini">
+{% else %}
 <body>
+{% endif %}
 
 {% block body_content %}
 
