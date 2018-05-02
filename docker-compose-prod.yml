@@ -30,7 +30,7 @@ services:
       - stats:/usr/src/app/stats
     ports:
       - '3000:3000'
- webserver:
+  webserver:
     build:
       context: ./webserver
       dockerfile: Dockerfile-prod
