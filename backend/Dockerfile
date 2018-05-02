@@ -7,7 +7,7 @@ ARG mode
 USER root
 
 WORKDIR /code
-RUN apt-get update && apt-get install -y ruby && apt-get && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y ruby ruby-dev && apt-get && rm -rf /var/lib/apt/lists/*
 RUN gem install sass --version 3.5.6
 ADD requirements/*.txt /code/requirements/
 RUN pip install --upgrade pip
