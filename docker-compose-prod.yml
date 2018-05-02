@@ -10,12 +10,14 @@ services:
       context: ./backend
       args:
         mode: prod
-    command: sh -c "python manage.py collectstatic --noinput; gunicorn config.wsgi:application --name dms --bind 0.0.0.0:8000"
+        command: sh -c "python manage.py runserver 0.0.0.0:3001"
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.prod
     volumes:
       - ./backend:/code
       - stats:/code/stats
+    ports:
+      - "3001:3001"
     depends_on:
       - db
   frontend:
@@ -27,11 +29,8 @@ services:
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
     ports:
-      - '80:80'
-    environment:
-      - NODE_ENV=production
-      - PUBLIC_URL=/wp
-  webserver:
+      - '3000:3000'
+ webserver:
     build:
       context: ./webserver
       dockerfile: Dockerfile-prod
