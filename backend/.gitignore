@@ -1,2 +1,4 @@
+.sass-cache/*
 secret.py
 __pycache__
+static/*
