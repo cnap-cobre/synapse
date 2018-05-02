@@ -8,6 +8,7 @@ USER root
 
 WORKDIR /code
 ADD requirements/*.txt /code/requirements/
+RUN pip install --upgrade pip
 RUN pip install -r requirements/$mode.txt
 RUN pip install git+https://github.com/kevindice/django-allauth@c9c7522
 
