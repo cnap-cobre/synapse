@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 REWRITE_REGEX = re.compile(r'((?:src|action|href)=["\'])/(?!\/)')
 
+
 class HttpProxy(LoginRequiredMixin, View):
     """
     Class-based view to configure Django HTTP Proxy for a URL pattern.
@@ -53,8 +54,8 @@ class HttpProxy(LoginRequiredMixin, View):
     proxy will work as a "standard" HTTP proxy.
 
     If the mode is set to ``record``, all requests will be forwarded to the remote
-    server, but both the requests and responses will be recorded to the database
-    for playback at a later stage.
+    server, but both the requests and responses will be recorded to the
+    database for playback at a later stage.
 
     If the mode is set to ``play``, no requests will be forwarded to the remote
     server.
@@ -82,7 +83,7 @@ class HttpProxy(LoginRequiredMixin, View):
     _msg = 'Response body: \n%s'
 
     def dispatch(self, request, *args, **kwargs):
-        self.url = request.path[ len(reverse(self.url_name)): ]
+        self.url = request.path[len(reverse(self.url_name)):]
         self.original_request_path = request.path
         request = self.normalize_request(request)
         if self.mode == 'play':
@@ -171,7 +172,9 @@ class HttpProxy(LoginRequiredMixin, View):
 
         request_url = self.get_full_url(self.url)
         body = request.body
-        return HttpResponse(requests.post(request_url, headers=headers, data=body))
+        return HttpResponse(
+                requests.post(request_url, headers=headers, data=body)
+        )
 
     def get_full_url(self, url):
         """
