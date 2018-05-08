@@ -72,7 +72,9 @@ class Profile(models.Model):
             def token_saver(t):
                 tk.token = t['access_token']
                 tk.token_secret = t['refresh_token']
-                tk.expires_at = datetime.fromtimestamp(int(t['expires_at']), tz=timezone.utc)
+                tk.expires_at = datetime.fromtimestamp(
+                        int(t['expires_at']),
+                        tz=timezone.utc)
                 tk.save()
 
             client = OAuth2Session(client_id, token=token,

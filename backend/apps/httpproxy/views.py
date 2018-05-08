@@ -31,8 +31,8 @@ class HttpProxy(LoginRequiredMixin, View):
                     HttpProxy.as_view(base_url='http://python.org/')),
             )
 
-    Using the above configuration (and assuming your Django project is server by
-    the Django development server on port 8000), a request to
+    Using the above configuration (and assuming your Django project is server
+    by the Django development server on port 8000), a request to
     ``http://localhost:8000/my-proxy/index.html`` is proxied to
     ``http://python.org/index.html``.
     """
