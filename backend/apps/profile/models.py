@@ -12,7 +12,7 @@ from allauth.account.models import EmailAddress
 from django_gravatar.helpers import get_gravatar_url, has_gravatar, \
         get_gravatar_profile_url, calculate_gravatar_hash
 
-from .util import get_refresh_token_url, get_protected_url
+from .util import get_provider
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -57,8 +57,9 @@ class Profile(models.Model):
                 'expires_in': (tk.expires_at - now).total_seconds()
             }
             client_id = tk.app.client_id
-            refresh_url = get_refresh_token_url(tk.app.provider)
-            protected_url = get_protected_url(tk.app.provider)
+            provider = get_provider(tk.app.provider)
+            refresh_url = provider.access_token_url
+            protected_url = provider.profile_url
 
             extra = {
                 'client_id': client_id,
