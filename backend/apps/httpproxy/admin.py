@@ -13,14 +13,14 @@ class RequestParameterInline(admin.TabularInline):
 
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ('method', 'domain', 'port', 'path', \
+    list_display = ('method', 'domain', 'port', 'path',
                     'querystring_display', 'date')
     list_filter = ('method', 'domain', 'port')
     inlines = (RequestParameterInline, ResponseInline)
 
 
 class ResponseAdmin(admin.ModelAdmin):
-    list_display = ('request_domain', 'request_path', 'request_querystring', \
+    list_display = ('request_domain', 'request_path', 'request_querystring',
                     'status', 'content_type')
     list_filter = ('status', 'content_type')
 

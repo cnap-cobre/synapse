@@ -14,6 +14,7 @@ from .models import Request, Response
 
 logger = logging.getLogger(__name__)
 
+
 class ProxyRecorder(object):
     """
     Facilitates recording and playback of Django HTTP requests and responses.
@@ -133,16 +134,20 @@ class ProxyRecorder(object):
                     domain=self.domain, port=self.port, path=request.path,
                     querykey=self._get_query_key(request)).latest()
         except Request.DoesNotExist:
-            raise RequestNotRecorded('The request made has not been ' \
-                    'recorded yet. Please run httpproxy in "record" mode ' \
+            raise RequestNotRecorded(
+                    'The request made has not been '
+                    'recorded yet. Please run httpproxy in "record" mode '
                     'first.')
 
         logger.info('Playback: GET "%s"' % self._request_string(request))
-        response = matching_request.response # TODO handle "no response" situation
+
+        # TODO handle "no response" situation
+        response = matching_request.response  
         encoding = self._get_encoding(response.content_type)
 
         return HttpResponse(response.content.encode(encoding),
-                status=response.status, content_type=response.content_type)
+                            status=response.status,
+                            content_type=response.content_type)
 
     def response_supported(self, response):
         return response['Content-Type'].partition(';')[0] \
