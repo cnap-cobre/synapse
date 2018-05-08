@@ -23,7 +23,8 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      args:
+        mode: dev
     volumes:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
@@ -35,7 +36,10 @@ services:
       - PUBLIC_URL=/wp
       - CI=true
   webserver:
-    build: ./webserver
+    build:
+      context: ./webserver
+      args:
+        mode: dev
     ports:
       - "443:443"
       - "80:80"
