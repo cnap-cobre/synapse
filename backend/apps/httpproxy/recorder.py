@@ -91,8 +91,11 @@ class ProxyRecorder(object):
         position = 1
         for name, values_list in request.GET.lists():
             for value in values_list:
-                recorded_request.parameters.create(order=position, name=name,
-                        value=value)
+                recorded_request.parameters.create(
+                        order=position,
+                        name=name,
+                        value=value
+                )
                 position += 1
 
     def record_response(self, recorded_request, response):

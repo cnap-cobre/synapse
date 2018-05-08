@@ -21,7 +21,8 @@ from django.contrib import admin
 
 from apps.main import views as main_views
 from apps.agave_proxy.views import AgaveProxy
-from apps.dropbox_proxy.views import DropboxProxy, DropboxApiProxy, DropboxContentProxy
+from apps.dropbox_proxy.views import DropboxProxy, \
+        DropboxApiProxy, DropboxContentProxy
 
 urlpatterns = [
     path('', main_views.home_page),
