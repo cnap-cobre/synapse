@@ -143,7 +143,7 @@ class ProxyRecorder(object):
         logger.info('Playback: GET "%s"' % self._request_string(request))
 
         # TODO handle "no response" situation
-        response = matching_request.response  
+        response = matching_request.response
         encoding = self._get_encoding(response.content_type)
 
         return HttpResponse(response.content.encode(encoding),

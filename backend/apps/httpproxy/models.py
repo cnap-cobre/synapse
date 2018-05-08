@@ -55,7 +55,9 @@ class RequestParameterManager(models.Manager):
     def urlencode(self):
         output = []
         for param in self.values('name', 'value'):
-            output.extend([urllib.parse.urlencode({param['name']: param['value']})])
+            output.extend([urllib.parse.urlencode(
+                {param['name']: param['value']}
+            )])
         return '&'.join(output)
 
 

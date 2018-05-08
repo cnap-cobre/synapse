@@ -77,7 +77,8 @@ class HttpProxy(LoginRequiredMixin, View):
 
     raise_exception = True
     """
-    This tells the LoginRequiredMixin to throw a PermissionDenied exception (403)
+    This tells the LoginRequiredMixin to throw a PermissionDenied
+    exception (403)
     """
 
     _msg = 'Response body: \n%s'

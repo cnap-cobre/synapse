@@ -21,5 +21,6 @@ class DropboxProxy(HttpProxy):
 class DropboxApiProxy(DropboxProxy):
     base_url = 'https://api.dropboxapi.com'
 
+
 class DropboxContentProxy(DropboxProxy):
     base_url = 'https://content.dropboxapi.com'
