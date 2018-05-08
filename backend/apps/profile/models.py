@@ -72,8 +72,10 @@ class Profile(models.Model):
                 tk.expires_at = datetime.fromtimestamp(int(t['expires_at']), tz=timezone.utc)
                 tk.save()
 
-            client = OAuth2Session(client_id, token=token, auto_refresh_url=refresh_url,
-                auto_refresh_kwargs=extra, token_updater=token_saver)
+            client = OAuth2Session(client_id, token=token,
+                                   auto_refresh_url=refresh_url,
+                                   auto_refresh_kwargs=extra,
+                                   token_updater=token_saver)
             r = client.get(protected_url)
 
 

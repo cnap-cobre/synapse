@@ -49,8 +49,8 @@ class HttpProxy(LoginRequiredMixin, View):
     mode = None
     """
     The mode that the proxy should run in. Available modes are ``record`` and
-    ``play``. If no mode is defined (``None`` – the default), this means the proxy
-    will work as a "standard" HTTP proxy.
+    ``play``. If no mode is defined (``None`` – the default), this means the
+    proxy will work as a "standard" HTTP proxy.
 
     If the mode is set to ``record``, all requests will be forwarded to the remote
     server, but both the requests and responses will be recorded to the database
@@ -59,9 +59,9 @@ class HttpProxy(LoginRequiredMixin, View):
     If the mode is set to ``play``, no requests will be forwarded to the remote
     server.
 
-    In ``play`` mode, if the response (to the request being made) was previously
-    recorded, the recorded response will be served. Otherwise, a custom
-    ``Http404`` exception will be raised
+    In ``play`` mode, if the response (to the request being made) was
+    previously recorded, the recorded response will be served. Otherwise, a
+    custom ``Http404`` exception will be raised.
     (:class:`~httpproxy.exceptions.RequestNotRecorded`).
     """
 
