@@ -130,8 +130,9 @@ class ProxyRecorder(object):
         Returns a previously recorded response based on the provided request.
         """
         try:
-            matching_request = Request.objects.filter(method=request.method,
-                    domain=self.domain, port=self.port, path=request.path,
+            matching_request = Request.objects.filter(
+                    method=request.method, domain=self.domain,
+                    port=self.port, path=request.path,
                     querykey=self._get_query_key(request)).latest()
         except Request.DoesNotExist:
             raise RequestNotRecorded(
