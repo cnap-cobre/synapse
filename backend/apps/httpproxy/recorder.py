@@ -81,8 +81,8 @@ class ProxyRecorder(object):
 
     def record_request_parameters(self, request, recorded_request):
         """
-        Records the :class:`~httpproxy.models.RequestParameter` objects for the
-        recorded :class:`~httpproxy.models.Request`.
+        Records the :class:`~httpproxy.models.RequestParameter` objects for
+        the recorded :class:`~httpproxy.models.Request`.
 
         The order field is set to reflect the order in which the QueryDict
         returns the GET parameters.
@@ -100,8 +100,8 @@ class ProxyRecorder(object):
 
     def record_response(self, recorded_request, response):
         """
-        Records a :class:`~httpproxy.models.Response` so it can be replayed at a
-        later stage.
+        Records a :class:`~httpproxy.models.Response` so it can be replayed at
+        a later stage.
 
         The recorded response is linked to a previously recorded
         :class:`~httpproxy.models.Request` and its request parameters to allow
@@ -120,8 +120,9 @@ class ProxyRecorder(object):
 
         # Record the new response
         Response.objects.create(request=recorded_request,
-                status=response.status_code, content_type=content_type,
-                content=response.content.decode(encoding))
+                                status=response.status_code,
+                                content_type=content_type,
+                                content=response.content.decode(encoding))
 
     def playback(self, request):
         """

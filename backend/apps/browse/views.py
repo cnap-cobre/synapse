@@ -4,6 +4,7 @@ from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.shortcuts import render
 from apps.profile.models import Profile
 
+
 @login_required
 def react_browse(request):
    return render(request, 'browse/react-browse.html')

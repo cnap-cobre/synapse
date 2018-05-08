@@ -41,7 +41,7 @@ class Request(models.Model):
                 (self.method, self.domain, self.port, self.path)
         if self.querystring:
             output += '?%s' % self.querystring
-        return output[:50] # TODO add elipsed if truncating
+        return output[:50]  # TODO add elipsed if truncating
 
     class Meta:
         verbose_name = _('request')
