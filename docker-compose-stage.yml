@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ./backend
+      args:
+        mode: stage
+    command: sh -c "gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3001 --workers 3 --reload"
+    environment:
+      - DJANGO_SETTINGS_MODULE=global.settings.stage
+    volumes:
+      - ./backend:/code
+      - stats:/code/stats
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-prod
+    volumes:
+      - './frontend:/usr/src/app'
+      - '/usr/src/app/node_modules'
+      - stats:/usr/src/app/stats
+    ports:
+      - "3000:3000"
+  webserver:
+    build:
+      context: ./webserver
+      dockerfile: Dockerfile-stage
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  stats:
+  db_data:
