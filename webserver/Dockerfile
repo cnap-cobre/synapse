@@ -1,4 +1,6 @@
 FROM nginx:alpine
 
+ARG mode
+
 ADD certs/* /etc/nginx/
-ADD conf/local.conf /etc/nginx/conf.d/default.conf
+ADD conf/$mode.conf /etc/nginx/conf.d/default.conf

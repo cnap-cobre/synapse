@@ -33,7 +33,8 @@ services:
   webserver:
     build:
       context: ./webserver
-      dockerfile: Dockerfile-prod
+      args:
+        mode: stage
     ports:
       - "443:443"
       - "80:80"
