@@ -56,7 +56,9 @@ class ProxyRecorder(object):
             recorded_request = self.record_request(request)
             self.record_response(recorded_request, response)
         elif not getattr(settings, 'PROXY_IGNORE_UNSUPPORTED', True):
-            raise ResponseUnsupported('Response of type "%s" could not be recorded.' % response['Content-Type'])
+            raise ResponseUnsupported(
+                    'Response of type "%s" could not be recorded.'
+                    % response['Content-Type'])
 
     def record_request(self, request):
         """

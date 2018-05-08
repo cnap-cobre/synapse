@@ -14,6 +14,7 @@ from django_gravatar.helpers import get_gravatar_url, has_gravatar, \
 
 from .util import get_provider
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     institution = models.CharField(max_length=100, default='', blank=True)
@@ -42,7 +43,9 @@ class Profile(models.Model):
     @property
     def tokens(self):
         "Returns the tokens for a particular user"
-        return SocialToken.objects.select_related('account').filter(account__user=self.user)
+        return SocialToken.objects \
+            .select_related('account') \
+            .filter(account__user=self.user)
 
     def renew_tokens(self):
         now = timezone.now()
