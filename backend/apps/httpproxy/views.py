@@ -57,8 +57,8 @@ class HttpProxy(LoginRequiredMixin, View):
     server, but both the requests and responses will be recorded to the
     database for playback at a later stage.
 
-    If the mode is set to ``play``, no requests will be forwarded to the remote
-    server.
+    If the mode is set to ``play``, no requests will be forwarded to the
+    remote server.
 
     In ``play`` mode, if the response (to the request being made) was
     previously recorded, the recorded response will be served. Otherwise, a

@@ -7,6 +7,6 @@ def get_provider(app):
     for name, obj in inspect.getmembers(views):
         if inspect.isclass(obj) \
                 and 'Adapter' in name \
-                and app.upper() in  name.upper():
+                and app.upper() in name.upper():
             return obj
 
