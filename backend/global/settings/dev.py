@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG=True
+DEBUG = True
 INSTALLED_APPS = ['debug_toolbar'] + INSTALLED_APPS
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 INTERNAL_IPS = ['localhost', '127.0.0.1', '172.18.0.1', '172.18.0.3']
@@ -15,4 +15,3 @@ DEBUG_TOOLBAR_CONFIG = {
 
 ALLOWED_HOSTS += ['localhost']
 CSRF_TRUSTED_ORIGINS += ['localhost']
-

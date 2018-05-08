@@ -3,6 +3,7 @@ from django.conf import settings
 from apps.httpproxy.views import HttpProxy
 from apps.profile.models import Profile
 
+
 class DropboxProxy(HttpProxy):
     base_url = 'https://www.dropbox.com'
 

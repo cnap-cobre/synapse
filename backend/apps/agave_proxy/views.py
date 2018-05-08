@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 from apps.httpproxy.views import HttpProxy
 from apps.profile.models import Profile
 
+
 class AgaveProxy(HttpProxy):
     base_url = settings.API_BASE_URL_AGAVE
     rewrite = True
@@ -15,7 +16,9 @@ class AgaveProxy(HttpProxy):
 
         # 403 if the user has no token
         if not agave_tokens.exists():
-            raise PermissionDenied('You must first authenticate against Agave.')
+            raise PermissionDenied(
+                    'You must first authenticate against Agave.'
+            )
 
         assert agave_tokens.count() == 1
         token = agave_tokens.get()
