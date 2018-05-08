@@ -17,9 +17,11 @@ class ProfileTestCase(TestCase):
 
     def test_oauth_refresh_token_url_resolution(self):
         for provider in registry.get_list():
-            self.assertTrue('https' in util.get_refresh_token_url(provider.id))
+            self.assertTrue('https' in
+                    util.get_provider(provider.id).profile_url)
 
     def test_oauth_get_protected_url(self):
         for provider in registry.get_list():
-            self.assertTrue('https' in util.get_protected_url(provider.id))
+            self.assertTrue('https' in
+                    util.get_provider(provider.id).access_token_url)
 
