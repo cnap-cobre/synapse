@@ -35,6 +35,9 @@ services:
       context: ./webserver
       args:
         mode: stage
+    volumes:
+      - ./backend/static/:/static
+      - ./frontend/dist/:/frontend
     ports:
       - "443:443"
       - "80:80"
