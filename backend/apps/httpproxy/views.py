@@ -53,8 +53,8 @@ class HttpProxy(LoginRequiredMixin, View):
     ``play``. If no mode is defined (``None`` – the default), this means the
     proxy will work as a "standard" HTTP proxy.
 
-    If the mode is set to ``record``, all requests will be forwarded to the remote
-    server, but both the requests and responses will be recorded to the
+    If the mode is set to ``record``, all requests will be forwarded to the
+    remote server, but both the requests and responses will be recorded to the
     database for playback at a later stage.
 
     If the mode is set to ``play``, no requests will be forwarded to the

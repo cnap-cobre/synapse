@@ -9,4 +9,3 @@ def get_provider(app):
                 and 'Adapter' in name \
                 and app.upper() in name.upper():
             return obj
-
