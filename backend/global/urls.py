@@ -42,11 +42,10 @@ urlpatterns = [
     re_path(r'^dropbox/', DropboxProxy.as_view(
         url_name='dbpx'
     ), name='dbpx'),
-] 
+]
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns \
-    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = [url(r'^__debug__/', include(debug_toolbar.urls))] \
+        + urlpatterns \
+        + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
