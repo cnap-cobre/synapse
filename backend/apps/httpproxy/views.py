@@ -95,6 +95,7 @@ class HttpProxy(LoginRequiredMixin, View):
             return response
 
         response = super(HttpProxy, self).dispatch(request, *args, **kwargs)
+        print(response)
         if self.mode == 'record':
             self.record(response)
         if self.rewrite:
@@ -162,7 +163,12 @@ class HttpProxy(LoginRequiredMixin, View):
             'Authorization': 'Bearer ' + self.get_auth_token(request),
         }
         request_url = self.get_full_url(self.url)
-        return HttpResponse(requests.get(request_url, headers=headers))
+        response = requests.get(request_url, headers=headers)
+        django_response = HttpResponse(response, status=response.status_code)
+        for header in response.headers:
+            if header not in ['Connection', 'Keep-Alive', 'Content-Length']:
+                django_response.__setitem__(header, response.headers[header])
+        return django_response
 
     def post(self, request, *args, **kwargs):
         headers = {
@@ -173,9 +179,12 @@ class HttpProxy(LoginRequiredMixin, View):
 
         request_url = self.get_full_url(self.url)
         body = request.body
-        return HttpResponse(
-                requests.post(request_url, headers=headers, data=body)
-        )
+        response = requests.post(request_url, headers=headers, data=body)
+        django_response = HttpResponse(response, status=response.status_code)
+        for header in response.headers:
+            if header not in ['Connection', 'Keep-Alive', 'Content-Length']:
+                django_response.__setitem__(header, response.headers[header])
+        return django_response
 
     def get_full_url(self, url):
         """
