@@ -8,3 +8,16 @@ exclude_patterns:
 plugins:
   pep8:
     enabled: true
+  radon:
+    enabled: true
+  SonarPython:
+    enabled: true
+  duplication:
+    enabled: true
+  fixme:
+    enabled: true
+  nodesecurity:
+    enabled: true
+  eslint:
+    enabled: true
+
