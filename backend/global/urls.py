@@ -25,7 +25,7 @@ from apps.dropbox_proxy.views import DropboxProxy, \
         DropboxApiProxy, DropboxContentProxy
 
 urlpatterns = [
-    path('', main_views.app),
+    path('', main_views.app, name='app'),
     path('admin/', admin.site.urls),
     path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
