@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>CNAP - {{ title }}</title>
+  <title>Synapse</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -28,16 +28,11 @@
     <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet" />
 </head>
 
-{% if request.COOKIES.sidebar_mini %}
-<body class="sidebar-mini">
-{% else %}
 <body>
-{% endif %}
 
 {% block body_content %}
 
 {% endblock %}{# body_content #}
-
 
 
 	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
