@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'compressor',
     'django_gravatar',
+    'rest_framework',
 
     'apps.main',
     'apps.httpproxy',
@@ -191,3 +192,9 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sass --scss {infile} {outfile}'),
 )
 COMPRESS_ENABLED = True
+
+
+# Rest Framework
+REST_FRAMEWORK = {
+    
+}

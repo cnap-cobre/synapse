@@ -41,6 +41,7 @@ urlpatterns = [
     re_path(r'^dropbox/', DropboxProxy.as_view(
         url_name='dbpx'
     ), name='dbpx'),
+    re_path(r'^api/', include('global.apiurls')),
 ]
 
 if settings.DEBUG:
