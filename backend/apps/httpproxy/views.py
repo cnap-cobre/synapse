@@ -95,7 +95,6 @@ class HttpProxy(LoginRequiredMixin, View):
             return response
 
         response = super(HttpProxy, self).dispatch(request, *args, **kwargs)
-        print(response)
         if self.mode == 'record':
             self.record(response)
         if self.rewrite:
