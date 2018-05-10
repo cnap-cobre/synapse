@@ -3,6 +3,7 @@ exclude_patterns:
   - "**/*.js"
   - "**/test.py"
   - "**/migrations/*.py"
+  - "!frontend/src/*"
 
 plugins:
   pep8:
