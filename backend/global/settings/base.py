@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'django_gravatar',
 
     'apps.main',
-    'apps.app',
     'apps.httpproxy',
 ]
 

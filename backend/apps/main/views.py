@@ -4,6 +4,6 @@ from allauth.account.decorators import verified_email_required
 
 
 @verified_email_required
-def home_page(request):
-    template_name = "home.html"
+def app(request):
+    template_name = "app.html"
     return render(request, template_name, {})

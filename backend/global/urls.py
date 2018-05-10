@@ -25,11 +25,10 @@ from apps.dropbox_proxy.views import DropboxProxy, \
         DropboxApiProxy, DropboxContentProxy
 
 urlpatterns = [
-    path('', main_views.home_page),
+    path('', main_views.app),
     path('admin/', admin.site.urls),
     path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
-    path('app/', include('apps.app.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(
         url_name='agpx'
     ), name='agpx'),
