@@ -7,4 +7,4 @@ from apps.profile.models import Profile
 
 @login_required
 def react_browse(request):
-    return render(request, 'browse/react-browse.html')
+    return render(request, 'app/app.html')

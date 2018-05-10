@@ -29,7 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
-    path('browse/', include('apps.browse.urls')),
+    path('app/', include('apps.app.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(
         url_name='agpx'
     ), name='agpx'),
