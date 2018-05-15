@@ -42,6 +42,7 @@ urlpatterns = [
         url_name='dbpx'
     ), name='dbpx'),
     re_path(r'^api/', include('global.apiurls')),
+    re_path(r'^.*/', main_views.app, name='app'),
 ]
 
 if settings.DEBUG:
