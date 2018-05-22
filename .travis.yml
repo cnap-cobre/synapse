@@ -24,8 +24,5 @@ before_script:
 
 script:
   - docker-compose -f docker-compose-test.yml run backend python manage.py test
-  - whoami
-  - id
-  - ls -lha /usr/src/app/
   - docker-compose -f docker-compose-test.yml run frontend npm run-script build
   - docker-compose -f docker-compose-test.yml run frontend npm test
