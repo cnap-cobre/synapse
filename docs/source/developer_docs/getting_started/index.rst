@@ -12,3 +12,4 @@ start running and developing Synapse.
    primer
    dependencies
    install
+   configuring_3rd_party_apis
