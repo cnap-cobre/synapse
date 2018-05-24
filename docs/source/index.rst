@@ -21,7 +21,7 @@ Funding
 =======
 
 Synapse and The CNAP Center of Biomedical Research Excellence (COBRE) is funded
-through an $10.6M grant from the National Institute of General Medical Sciences
+through a $10.6M grant from the National Institute of General Medical Sciences
 (P20 GM113109) in 2017.
 
 
