@@ -46,3 +46,5 @@ Getting a Dropbox Client Key and Secret
 At https://www.dropbox.com/developers , navigate to "My Apps".  After you
 click "Create App", make sure to select the Dropbox API (rather than Dropbox
 Business).  Select "Full Dropbox".
+
+Configure Django Allauth with these keys just as described in the Agave Section above.
