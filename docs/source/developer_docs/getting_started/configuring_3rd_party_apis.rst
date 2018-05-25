@@ -28,8 +28,16 @@ https://public.agaveapi.co/create_account
 Next, download the Agave CLI to create a client:
 https://bitbucket.org/agaveapi/cli/overview
 
-In ``.../agavecli/cli/bin``, run ``./clients-create`` and type in your Agave
-username and password.
+In ``.../agavecli/cli/bin``, run ``./clients-create``, type in your Agave
+username and password, and you should receive a key and secret.
+
+You can manage your clients here:  https://public.agaveapi.co/store/#
+
+To configure Django Allauth with these keys, start the application and
+navigate to ``/admin/socialaccount/socialapp/add/``.  Make sure to select
+``localhost`` (or whatever your domain is) as a chosen site.
+
+.. image:: /_static/allauth-config.png
 
 
 Getting a Dropbox Client Key and Secret
