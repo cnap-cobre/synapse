@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from datetime import timedelta
 
 from apps.httpproxy.views import HttpProxy
 from apps.profile.models import Profile
@@ -24,7 +25,7 @@ class AgaveProxy(HttpProxy):
         token = agave_tokens.get()
 
         # Renew if token has expired
-        if token.expires_at < timezone.now():
+        if token.expires_at < timezone.now() + timedelta(hours=1):
             profile.renew_tokens()
             return profile.tokens.filter(app__provider='agave').get().token
 
