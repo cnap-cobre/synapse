@@ -183,7 +183,7 @@ class HttpProxy(LoginRequiredMixin, View):
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
             if header not in ['Connection', 'Keep-Alive',
-                    'Content-Length', 'Transfer-Encoding']:
+                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
