@@ -158,7 +158,6 @@ class HttpProxy(LoginRequiredMixin, View):
         return ProxyRecorder(domain=url.hostname, port=(url.port or 80))
 
     def get(self, request, *args, **kwargs):
-        print(self.http_method_names)
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
         }
