@@ -158,6 +158,7 @@ class HttpProxy(LoginRequiredMixin, View):
         return ProxyRecorder(domain=url.hostname, port=(url.port or 80))
 
     def get(self, request, *args, **kwargs):
+        print(self.http_method_names)
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
         }
@@ -186,6 +187,23 @@ class HttpProxy(LoginRequiredMixin, View):
                     'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
+
+    def delete(self, request, *args, **kwargs):
+        headers = {
+            'Authorization': 'Bearer ' + self.get_auth_token(request),
+        }
+        if request.META.get('CONTENT_TYPE'):
+            headers['Content-type'] = request.META.get('CONTENT_TYPE')
+
+        request_url = self.get_full_url(self.url)
+        response = requests.delete(request_url, headers=headers)
+        django_response = HttpResponse(response, status=response.status_code)
+        for header in response.headers:
+            if header not in ['Connection', 'Keep-Alive',
+                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+                django_response.__setitem__(header, response.headers[header])
+        return django_response
+
 
     def get_full_url(self, url):
         """
