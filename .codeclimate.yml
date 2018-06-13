@@ -14,6 +14,10 @@ plugins:
     enabled: true
   duplication:
     enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 60
   fixme:
     enabled: true
   nodesecurity:
