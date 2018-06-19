@@ -2,8 +2,10 @@ import React, { Component } from "react";
 
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../../Loader/Loader";
-import FileBreadcrumbs from "../FileBreadcrumbs/FileBreadcrumbs";
-import FileBrowserList from "../FileBrowserList/FileBrowserList";
+import FileBreadcrumbs from "./FileBreadcrumbs/FileBreadcrumbs";
+import FileBrowserList from "./FileBrowserList/FileBrowserList";
+
+import FileBrowserControls from "./FileBrowserControls/FileBrowserControls";
 
 import PropTypes from "prop-types";
 import HistoryPropTypes from '../../../proptypes/HistoryPropTypes';
@@ -20,6 +22,7 @@ export default class FileBrowser extends Component {
     showDotfiles: PropTypes.bool.isRequired,
     toggleDotfiles: PropTypes.func.isRequired,
     handleFileClick: PropTypes.func.isRequired,
+    handleRefresh: PropTypes.func.isRequired,
     history: HistoryPropTypes,
     fileActionsService: FileActionsServicePropTypes
   };
@@ -33,19 +36,11 @@ export default class FileBrowser extends Component {
                            prefix={this.props.prefix}
                            style={{marginBottom: "0px"}}
           />
-          <div className="browserControls" style={{
-            padding: "1px 15px",
-            backgroundColor: "#e4e4e4",
-            borderRadius: "4px",
-            textAlign: "left",
-            marginBottom: "20px"
-          }}>
-            <div className="checkbox">
-              <input id="dotFilesCheckbox" type="checkbox" onChange={this.props.toggleDotfiles} />
-              <label htmlFor="dotFilesCheckbox">Show Dotfiles</label>
-            </div>
-          </div>
 
+          <FileBrowserControls toggleDotfiles={this.props.toggleDotfiles}
+                               showDotfiles={this.props.showDotfiles}
+                               handleRefresh={this.props.handleRefresh}
+          />
 
           <FileBrowserList list={this.props.list}
                            error={this.props.error}

@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import FileBrowserPropTypes from '../../../proptypes/FileBrowserPropTypes.js';
 import AgaveService from '../../../services/Agave';
 
-
 import FileBrowser from "../FileBrowser/FileBrowser";
 import {withCookies, Cookies} from "react-cookie";
 
+
 class AgaveBrowser extends Component {
+
   state = {
     list: [],
     loading: true,
@@ -168,6 +169,7 @@ class AgaveBrowser extends Component {
                      showDotfiles={this.state.showDotfiles}
                      toggleDotfiles={this.toggleDotfiles.bind(this)}
                      handleFileClick={this.handleFileClick.bind(this)}
+                     handleRefresh={this.FetchFiles.bind(this)}
                      fileActionsService={this.FileActionsService}
         />
     );
