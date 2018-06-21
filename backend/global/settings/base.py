@@ -34,7 +34,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['hosted.beocat.ksu.edu',
                  'hosted.beocat.ksu.edu:10443',
-                 'dataverse.cnap.ksu.edu']
+                 'dataverse.cnap.ksu.edu'
+                ]
 CSRF_TRUSTED_ORIGINS = ['dataverse.cnap.ksu.edu']
 
 # Application definition
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.agave',
+    'allauth.socialaccount.providers.globus',
 
     'crispy_forms',
     'webpack_loader',
@@ -184,7 +186,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # API Base URLs for Proxying Requests
 API_BASE_URL_AGAVE = 'https://public.agaveapi.co'
-
+API_BASE_URL_DROPBOX = 'https://www.dropbox.com'
+API_BASE_URL_DROPBOX_API = 'https://api.dropboxapi.com'
+API_BASE_URL_DROPBOX_CONTENT = 'https://content.dropboxapi.com'
+API_BASE_URL_GLOBUS = 'https://auth.globus.org'
 
 # Frontend Assets
 COMPRESS_PRECOMPILERS = (

@@ -8,3 +8,15 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DATS = 3
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Beocat DMS Email Confirmation"
+
+SOCIALACCOUNT_PROVIDERS = {
+    'globus': {
+        'SCOPE': [
+            'openid',
+            'profile',
+            'offline_access',
+            'email',
+            'urn:globus:auth:scope:transfer.api.globus.org:all'
+        ]
+    }
+}

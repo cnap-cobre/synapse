@@ -5,7 +5,7 @@ from apps.profile.models import Profile
 
 
 class DropboxProxy(HttpProxy):
-    base_url = 'https://www.dropbox.com'
+    base_url = settings.API_BASE_URL_DROPBOX
 
     def get_auth_token(self, request):
         profile = request.user.profile
@@ -19,8 +19,8 @@ class DropboxProxy(HttpProxy):
 
 
 class DropboxApiProxy(DropboxProxy):
-    base_url = 'https://api.dropboxapi.com'
+    base_url = settings.API_BASE_URL_DROPBOX_API
 
 
 class DropboxContentProxy(DropboxProxy):
-    base_url = 'https://content.dropboxapi.com'
+    base_url = settings.API_BASE_URL_DROPBOX_CONTENT
