@@ -27,7 +27,9 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
       {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     </div>
 
-    <div class="login-or">{% trans 'or' %}</div>
+    <div class="login-or">
+      <span>{% trans 'or' %}</span>
+    </div>
 
   </div>
 

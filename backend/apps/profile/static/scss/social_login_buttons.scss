@@ -37,3 +37,36 @@
     background-color: #00a7b8;
     border-color: rgba(0,0,0,0.2);
 }
+
+
+.login-or {
+    margin: 1rem 0em;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.2em;
+    & > span {
+        position: relative;
+        display: inline-block;
+
+        &:before, &:after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 2px;
+            background: #444;
+        }
+
+        &:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+
+        &:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+    }
+}
