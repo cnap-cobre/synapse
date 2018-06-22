@@ -1,3 +1,7 @@
+$dropbox: #1087dd;
+$globus: #00377b;
+$agave: #00a7b8;
+
 .btn-social {
     position: relative;
     padding-left: 44px;
@@ -22,20 +26,23 @@
 
 .btn-dropbox{
     color: #fff;
-    background-color: #1087dd;
+    background-color: $dropbox;
     border-color: rgba(0,0,0,0.2);
+    &:hover { background-color: darken($dropbox, 10%); }
 }
 
 .btn-globus{
     color: #fff;
-    background-color: #00377b;
+    background-color: $globus;
     border-color: rgba(0,0,0,0.2);
+    &:hover { background-color: darken($globus, 10%); }
 }
 
 .btn-agave{
     color: #fff;
-    background-color: #00a7b8;
+    background-color: $agave;
     border-color: rgba(0,0,0,0.2);
+    &:hover { background-color: darken($agave, 10%); }
 }
 
 
