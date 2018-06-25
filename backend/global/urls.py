@@ -26,7 +26,6 @@ from apps.dropbox_proxy.views import DropboxProxy, \
 from apps.globus_proxy.views import GlobusProxy
 
 urlpatterns = [
-    path('', main_views.app, name='app'),
     path('admin/', admin.site.urls),
     path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
@@ -46,7 +45,7 @@ urlpatterns = [
         url_name='glpx'
     ), name='glpx'),
     re_path(r'^api/', include('global.apiurls')),
-    re_path(r'^.*/', main_views.app, name='app'),
+    re_path(r'^.*', main_views.app, name='app'),
 ]
 
 if settings.DEBUG:
