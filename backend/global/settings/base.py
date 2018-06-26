@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 
     'apps.profile',
     'apps.accounts',
+    'apps.user',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -200,5 +202,7 @@ COMPRESS_ENABLED = True
 
 # Rest Framework
 REST_FRAMEWORK = {
-    
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }

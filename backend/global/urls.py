@@ -44,7 +44,7 @@ urlpatterns = [
     re_path(r'^globus/', GlobusProxy.as_view(
         url_name='glpx'
     ), name='glpx'),
-    re_path(r'^api/', include('global.apiurls')),
+    re_path(r'^api/v1/', include('global.apiurls')),
     re_path(r'^.*', main_views.app, name='app'),
 ]
 

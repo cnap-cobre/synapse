@@ -1,10 +1,9 @@
-from django.test import TestCase
-
-from django.contrib.auth.models import User
+from allauth.socialaccount.providers import registry
 from apps.profile.models import Profile
 from apps.profile import util
+from django.contrib.auth.models import User
+from django.test import TestCase
 
-from allauth.socialaccount.providers import registry
 
 class ProfileTestCase(TestCase):
     def setUp(self):
@@ -24,4 +23,3 @@ class ProfileTestCase(TestCase):
         for provider in registry.get_list():
             self.assertTrue('https' in
                     util.get_provider(provider.id).access_token_url)
-

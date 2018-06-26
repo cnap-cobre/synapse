@@ -19,9 +19,26 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     institution = models.CharField(max_length=100, default='', blank=True)
 
+    class Meta:
+        permissions = (
+            ("can_view_full_profiles_of_others", "Can view full profiles of others"),
+        )
+
+    @property
+    def dropbox(self):
+        return SocialAccount.objects.filter(user=self.user, provider='dropbox')
+
+    @property
+    def agave(self):
+        return SocialAccount.objects.filter(user=self.user, provider='agave')
+
+    @property
+    def globus(self):
+        return SocialAccount.objects.filter(user=self.user, provider='globus')
+
     @property
     def gravatar(self):
-        email = EmailAddress.objects.get_primary(user=self.user)
+        email = EmailAddress.objects.get_primary(user=self.user).email
         return {
             'url': get_gravatar_url(email, size=150),
             'exists': has_gravatar(email),
