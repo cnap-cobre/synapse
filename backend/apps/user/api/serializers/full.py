@@ -7,7 +7,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'url')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    groups = GroupSerializer(many=True)
+    groups = GroupSerializer(many=True, read_only=True)
     is_staff = serializers.BooleanField(read_only=True)
 
     class Meta:
