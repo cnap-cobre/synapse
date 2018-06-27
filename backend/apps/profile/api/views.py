@@ -4,6 +4,7 @@ from apps.profile.models import Profile
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from .permissions import IsTargetUserOrHasPerm, IsNotAllowed
 from .serializers import basic, full
 
@@ -24,7 +25,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
         """
         if self.action in ['update', 'partial_update']:
             return IsTargetUserOrHasPerm(),
-        elif self.action in ['retrieve', 'list', 'metadata'] \
+        elif self.action in ['retrieve', 'list', 'metadata', 'me'] \
                 or self.request.method in ['HEAD', 'OPTIONS']:
             return IsAuthenticated(),
         else:
@@ -45,3 +46,15 @@ class ProfileViewSet(viewsets.ModelViewSet):
             if obj.user == self.request.user:
                 return full.ProfileSerializer
         return basic.ProfileSerializer
+
+    @action(methods=['head', 'get'], detail=False)
+    def me(self, request):
+        """
+        Convenience method to return a user's own profile
+        """
+        return Response(
+            full.ProfileSerializer(
+                self.request.user.profile,
+                context={'request': request}
+            ).data
+        )

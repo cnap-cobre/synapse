@@ -244,6 +244,24 @@ class ProfileAPIPermissionsTestCase(TestCase):
         self.assertTrue('groups' in profile_list_response.data[0]['user'].keys())
         self.assertTrue('email' in profile_list_response.data[0]['user'].keys())
 
+    def test_user_profile_me_endpoint(self):
+        client = APIClient()
+        client.force_authenticate(user=self.regular_user)
+
+        my_user = client.get('/api/v1/users/me/', format='json')
+        self.assertEqual(my_user.status_code, 200)
+        self.assertDictContainsSubset({
+            'username': 'morty',
+            'email': 'morty@rickandmorty.com'
+        }, my_user.data)
+
+        my_profile = client.get('/api/v1/profiles/me/', format='json')
+        self.assertEqual(my_profile.status_code, 200)
+        self.assertDictContainsSubset({
+            'username': 'morty',
+            'email': 'morty@rickandmorty.com'
+        }, my_profile.data['user'])
+
 
 
 

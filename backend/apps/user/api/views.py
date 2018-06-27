@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from .serializers import full, basic, anon_create
 from .permissions import IsTargetUserOrHasPerm, IsNotAllowed
 
@@ -24,7 +25,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return AllowAny(),
         elif self.action in ['update', 'partial_update']:
             return IsTargetUserOrHasPerm(),
-        elif self.action in ['retrieve', 'list'] \
+        elif self.action in ['retrieve', 'list', 'me'] \
                 or self.request.method in ['HEAD']:
             return IsAuthenticated(),
         else:
@@ -45,9 +46,32 @@ class UserViewSet(viewsets.ModelViewSet):
             return full.UserSerializer
         elif self.action == 'create':
             return anon_create.UserSerializer
+        elif self.detail:
+            obj = self.get_object()
+            if obj == self.request.user:
+                return full.UserSerializer
         return basic.UserSerializer
+
+    @action(methods=['head', 'get'], detail=False)
+    def me(self, request):
+        """
+        Convenience method to return a user's own profile
+        """
+        return Response(
+            full.UserSerializer(
+                self.request.user,
+                context={'request': request}
+            ).data
+        )
 
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = full.GroupSerializer
+    http_method_names = ['get', 'head', 'options']
+
+    def get_permissions(self):
+        if self.action in ['retrieve', 'list', 'metadata'] \
+                or self.request.method in ['HEAD', 'OPTIONS']:
+            return IsAuthenticated(),
+        return IsNotAllowed(),
