@@ -27,7 +27,6 @@ from apps.globus_proxy.views import GlobusProxy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/profile/', include('apps.profile.urls')),
     path('accounts/', include('allauth.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(
         url_name='agpx'

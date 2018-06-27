@@ -1,13 +1,9 @@
 from rest_framework import permissions
 
-class IsStaffOrTargetUser(permissions.BasePermission):
-    def has_permission(self, request, view):
-        # allow user to list all users if logged in user is staff
-        return view.action == 'retrieve' or request.user.is_staff
-
+class IsTargetUserOrHasPerm(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         # allow logged in user to view own details, allows staff to view all records
-        return request.user.is_staff or obj == request.user
+        return obj.user == request.user or request.user.has_perm('profile.can_change_profile')
 
 
 class IsNotAllowed(permissions.BasePermission):

@@ -1,8 +1,8 @@
 from django.urls import include, path, re_path
 from django.conf.urls import url
 from rest_framework import routers
-from apps.user.views import UserViewSet
-from apps.profile.views import ProfileViewSet
+from apps.user.api.views import UserViewSet
+from apps.profile.api.views import ProfileViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
