@@ -5,6 +5,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
 
     def to_internal_value(self, data):
         # 400 - Bad request if unallowed fields are present
@@ -16,3 +17,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                 raise serializers.ValidationError(err)
 
         return super().to_internal_value(data)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
