@@ -14,10 +14,10 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     # because we need to forward the request context.
     # SocialAccountSerializer changes its fields based on permissions
     gravatar = serializers.ReadOnlyField()
-    dropbox = SocialAccountSerializer(many=True)
-    agave = SocialAccountSerializer(many=True)
-    globus = SocialAccountSerializer(many=True)
-    user = full.UserSerializer()
+    dropbox = SocialAccountSerializer(many=True, read_only=True)
+    agave = SocialAccountSerializer(many=True, read_only=True)
+    globus = SocialAccountSerializer(many=True, read_only=True)
+    user = full.UserSerializer(read_only=True)
 
     class Meta:
         model = Profile

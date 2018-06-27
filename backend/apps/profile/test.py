@@ -151,7 +151,7 @@ class ProfileAPIPermissionsTestCase(TestCase):
         self.assertEqual(list_response.status_code, 200)
         self.assertEqual(
             set(list_response.data[0]['user'].keys()),
-            set(['username', 'url']))
+            set(['id', 'username', 'url']))
         self.assertEqual(client.head('/api/v1/profiles/', format='json').status_code, 200)
         self.assertEqual(client.options('/api/v1/profiles/', format='json').status_code, 200)
 
@@ -163,7 +163,7 @@ class ProfileAPIPermissionsTestCase(TestCase):
         single_response = client.get('/api/v1/profiles/%d/' % id, format='json')
         self.assertEqual(single_response.status_code, 200)
         self.assertTrue(
-            set(['first_name', 'last_name', 'email']).issubset(set(single_response.data['user'].keys()))
+            set(['first_name', 'last_name', 'email', 'groups']).issubset(set(single_response.data['user'].keys()))
         )
 
 
@@ -214,7 +214,7 @@ class ProfileAPIPermissionsTestCase(TestCase):
         client = APIClient()
         client.force_authenticate(user=self.regular_user)
 
-        # Update Existing Profile - Should succeed because of ownership
+        # Partially Update Existing Profile - Should succeed because of ownership
         self.assertEqual(client.patch('/api/v1/profiles/%d/' % self.regular_user.id, {
             'institution': 'Washington State University'
         }, format='json').status_code, 200)
@@ -222,6 +222,27 @@ class ProfileAPIPermissionsTestCase(TestCase):
             Profile.objects.filter(user_id=self.regular_user.id).get().institution,
             'Washington State University')
 
+        # Full update of existing profile - should succeed because of ownership
+        self.assertEqual(client.put('/api/v1/profiles/%d/' % self.regular_user.id, {
+            'institution': 'Wichita State University',
+        }, format='json').status_code, 200)
+        self.assertEqual(
+            Profile.objects.filter(user_id=self.regular_user.id).get().institution,
+            'Wichita State University')
+
+    def test_privileged_user_can_see_full_profiles(self):
+        client = APIClient()
+        client.force_authenticate(user=self.regular_user_with_perm)
+
+        user_list_response = client.get('/api/v1/users/', format='json')
+        self.assertEqual(user_list_response.status_code, 200)
+        self.assertTrue('groups' in user_list_response.data[0].keys())
+        self.assertTrue('email' in user_list_response.data[0].keys())
+
+        profile_list_response = client.get('/api/v1/profiles/', format='json')
+        self.assertEqual(profile_list_response.status_code, 200)
+        self.assertTrue('groups' in profile_list_response.data[0]['user'].keys())
+        self.assertTrue('email' in profile_list_response.data[0]['user'].keys())
 
 
 
