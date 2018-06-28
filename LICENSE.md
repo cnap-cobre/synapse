@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018 Kevin Dice, CNAP Center of Biomedical Research Excellence
+Copyright (c) CNAP Center of Biomedical Research Excellence
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
