@@ -1,10 +1,8 @@
 <div align="center">
-<br><br><br><br>
-<img src="https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png" alt="Synapse Logo" width="300">
-<br><br><br><br>
+<br><br>
+<img src="https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png" alt="Synapse Logo" width="120">
+<h1>Synapse</h1>
 </div>
-
-# Synapse
 
 [![Documentation Status](https://readthedocs.org/projects/cnap-synapse/badge/?version=latest)](http://cnap-synapse.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/cnap-cobre/synapse.svg?branch=master)](https://travis-ci.org/cnap-cobre/synapse)
