@@ -12,6 +12,12 @@
 [![Dependency Freshness](https://david-dm.org/cnap-cobre/synapse/status.svg?path=frontend)](https://david-dm.org/cnap-cobre/synapse?path=frontend)
 [![Maintainability](https://api.codeclimate.com/v1/badges/51341d034ff8d6c600c6/maintainability)](https://codeclimate.com/github/cnap-cobre/synapse/maintainability)
 
+An open science gateway for the Psychological Sciences
+
+- Integrated with [Agave](https://agaveapi.co/),
+[Globus](https://www.globus.org/), [Dropbox](https://www.dropbox.com/)
+- Built with open source technologies
+
 ## Documentation
 
 https://cnap-synapse.readthedocs.io/en/latest/
