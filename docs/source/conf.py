@@ -23,11 +23,6 @@ project = u'Synapse'
 copyright = u'2018, CNAP Center of Biomedical Research Excellence'
 author = u'Kevin Dice'
 
-# The short X.Y version
-version = u''
-# The full version, including alpha/beta/rc tags
-release = u'0.0.0'
-
 
 # -- General configuration ---------------------------------------------------
 
