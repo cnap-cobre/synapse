@@ -43,4 +43,4 @@ Synapse is licensed under the [MIT License](https://tldrlegal.com/license/mit-li
 
 You are free to do anything with this software except hold its creators liable.  You must include the copyright notice and MIT License in all copies or substantial uses of the work.  See [LICENSE.md](./LICENSE.md) for the full license text.
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcnap-cobre%2Fsynapse?ref=badge_large) [![Greenkeeper badge](https://badges.greenkeeper.io/cnap-cobre/synapse.svg)](https://greenkeeper.io/)
