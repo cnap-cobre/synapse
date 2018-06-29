@@ -30,7 +30,10 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   developer_docs/index
+   requirements_docs/requirements_docs
+   design_docs/design_docs
+   developer_docs/developer_docs
+   user_docs/user_docs
 
 
 Indices and Tables
