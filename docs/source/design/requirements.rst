@@ -8,6 +8,6 @@ Requirements Specification
 
    requirements/introduction
    requirements/overall_description
-   requirements/specifics
+   requirements/specific_requirements
    requirements/change_management
    requirements/supporting_information
