@@ -27,7 +27,7 @@ An open science gateway for the Psychological Sciences
    :maxdepth: 2
    :caption: Architecture & Design
 
-   design/index
+   design/requirements
 
 .. toctree::
    :maxdepth: 2
