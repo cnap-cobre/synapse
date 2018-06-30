@@ -50,23 +50,3 @@ Synapse is funded through an NIH grant [1]_ under the
        Biomedical Research Excellence
 
 .. _cnap: http://www.k-state.edu/cnap/
-
-Contributors
-============
-
-* `Kevin Dice <https://github.com/kevindice>`_
-* `Lauren Lynch <https://github.com/laurenkl96>`_
-* `Gabe Maddex <https://github.com/gmaddex>`_
-
-Submitting a PR?  Add yourself to this list.
-
-License
-=======
-
-Synapse is licensed under the `MIT License <https://tldrlegal.com/license/mit-license>`_.
-
-Essentially, you are free to do anything with this software except hold its creators liable.
-You must include the copyright notice and MIT License in all copies or substantial uses of
-this software.
-
-See the full license text `here <https://github.com/cnap-cobre/synapse/blob/master/LICENSE.md>`_.

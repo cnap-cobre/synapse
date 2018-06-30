@@ -17,9 +17,11 @@ An open science gateway for the Psychological Sciences
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents
+   :caption: About
 
    about
+   contributors
+   license
 
 .. toctree::
    :maxdepth: 2
@@ -29,17 +31,17 @@ An open science gateway for the Psychological Sciences
 
 .. toctree::
    :maxdepth: 2
-   :caption: Users Docs
-
-   user
-
-.. toctree::
-   :maxdepth: 2
    :caption: Developer Docs
 
    developer/for_the_impatient
    developer/getting_started
    developer/these_docs
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Users Docs
+
+   user/getting_started
 
 .. toctree::
    :maxdepth: 2
