@@ -28,9 +28,13 @@ An open science gateway for the Psychological Sciences
 
 All Docs:  https://cnap-synapse.readthedocs.io/en/latest/
 
-Developer Docs:  https://cnap-synapse.readthedocs.io/en/latest/developer_docs/
+User Docs:  https://cnap-synapse.readthedocs.io/en/latest/user/
 
-User Docs:  (coming soon)
+Developer Docs:  https://cnap-synapse.readthedocs.io/en/latest/developer/
+
+Design Docs:  https://cnap-synapse.readthedocs.io/en/latest/design/
+
+Deployment Docs:  https://cnap-synapse.readthedocs.io/en/latest/deployment/
 
 ## Contributors
 
