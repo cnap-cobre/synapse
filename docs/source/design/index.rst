@@ -1,6 +1,6 @@
-####################
-Design Documentation
-####################
+#####################
+Architecture & Design
+#####################
 
 .. toctree::
    :maxdepth: 2

@@ -6,10 +6,9 @@ In this section, we explain the justification for using Docker and how to
 start running and developing Synapse.
 
 .. toctree::
-   :maxdepth: 1
-   :titlesonly:
+   :maxdepth: 2
 
-   primer
-   dependencies
-   install
-   configuring_3rd_party_apis
+   getting_started/primer
+   getting_started/dependencies
+   getting_started/install
+   getting_started/configuring_3rd_party_apis

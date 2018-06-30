@@ -19,8 +19,8 @@ An open science gateway for the Psychological Sciences
 - Integrated with [Agave](https://agaveapi.co/),
 [Globus](https://www.globus.org/), [Dropbox](https://www.dropbox.com/), [Google Drive](https://www.google.com/drive/)
 - Built with open source technologies
-- Use your own cluster (Slurm, SGE, Torque, Condor, ...anything supported by Agave)
-- Use your own filesystem (SFTP, IRODS, GridFTP, AmazonS3, Dropbox)
+- Launch compute jobs on your own cluster (Slurm, SGE, Torque, Condor, ...anything supported by Agave)
+- Manage files on your own filesystem (SFTP, IRODS, GridFTP, AmazonS3, Dropbox)
 - Share data with collaborators
 - Publish datasets for reproducible research
 
@@ -39,6 +39,7 @@ Deployment Docs:  https://cnap-synapse.readthedocs.io/en/latest/deployment/
 ## Contributors
 
 - Kevin Dice
+- Lauren Lynch
 - Gabe Maddex
 
 Submitting a PR?  Add yourself to this list.
