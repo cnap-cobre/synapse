@@ -27,6 +27,7 @@ An open science gateway for the Psychological Sciences
    :maxdepth: 2
    :caption: Architecture & Design
 
+   design/data_census
    design/requirements
 
 .. toctree::
