@@ -57,10 +57,10 @@ Funding
 Synapse and the CNAP COBRE [1]_ is funded through a grant from the National Institute
 of General Medical Sciences [2]_.
 
-.. [1] Cognitive and Neurobiological Approaches to Plasticity Center of
-       Biomedical Research Excellence
+.. [1] `Cognitive and Neurobiological Approaches to Plasticity Center of
+       Biomedical Research Excellence <cnap_>`_
 
-.. [2] National Institute of General Medical Sciences, (P20 GM113109)
+.. [2] National Institute of General Medical Sciences, (`P20 GM113109 <grant_>`_)
 
 
 
@@ -70,3 +70,7 @@ Indices and Tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. _cnap: http://www.k-state.edu/cnap/
+.. _grant: https://projectreporter.nih.gov/project_info_description.cfm?aid=9528596&icde=40132020&ddparam=&ddvalue=&ddsub=&cr=1&csb=default&cs=ASC&pball=
