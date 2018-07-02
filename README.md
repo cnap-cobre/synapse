@@ -1,3 +1,5 @@
+*In development.  Not ready for production use.  Contact contributors for project status.*
+
 <div align="center">
 <br><br>
 <img src="https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png" alt="Synapse Logo" width="450">
