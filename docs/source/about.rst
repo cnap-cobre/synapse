@@ -38,9 +38,10 @@ Synapse is funded through an NIH grant [1]_ under the
 `CNAP Center of Biomedical Research Excellence <cnap_>`_ [2]_ at
 `Kansas State University <http://www.k-state.edu>`_.
 
-.. [1] National Institute of General Medical Sciences, (P20 GM113109)
+.. [1] National Institute of General Medical Sciences, (`P20 GM113109 <grant_>`_)
 
 .. [2] Cognitive and Neurobiological Approaches to Plasticity Center of
        Biomedical Research Excellence
 
 .. _cnap: http://www.k-state.edu/cnap/
+.. _grant: https://projectreporter.nih.gov/project_info_description.cfm?aid=9528596&icde=40132020&ddparam=&ddvalue=&ddsub=&cr=1&csb=default&cs=ASC&pball=
