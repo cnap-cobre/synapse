@@ -1,0 +1,13 @@
+.wy-side-nav-search {
+  background-color: #42b8c5;
+}
+
+.wy-side-nav-search > a.icon.icon-home {
+  background-image: url(https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png);
+  background-size: 47%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 3em;
+  background-position: center;
+  color: rgba(252, 252, 252, 0);
+}

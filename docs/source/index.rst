@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 .. image:: https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png
-   :width: 300 px
+   :width: 250 px
    :align: center
 
 ----

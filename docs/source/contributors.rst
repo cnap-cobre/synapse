@@ -1,9 +1,3 @@
-.. image:: https://raw.githubusercontent.com/cnap-cobre/synapse/master/logo.png
-   :width: 300 px
-   :align: center
-
-----
-
 ############
 Contributors
 ############
