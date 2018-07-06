@@ -1,6 +1,19 @@
 Product Perspective
 ===================
 
+Synapse is best described as an "open science gateway".
+
+Similar products include
+
+* `Cyverse <cyverse_>`_ - a bioinfomatics platform
+* `Sci-GalA Open Science Platform <scigala_>`_ - Sci-GalA is a
+  consortium similar to XSEDE which is broadly focused on advancing
+  scientific computing and data management in Africa.
+*
+
+.. _cyverse: http://www.cyverse.org/
+.. _scigala: http://www.sci-gaia.eu/osp/
+
 TODO - Put the product into perspective with other related products.  It
 is not standalone but rather integrates many 3rd party components mediating
 their interactions.  Compare to existing systems in the marketplace.
