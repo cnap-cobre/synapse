@@ -5,5 +5,4 @@ django-webpack-loader==0.6.0
 django-compressor==2.2
 django-gravatar2==1.4.2
 djangorestframework==3.8.2
-django-allauth
-
+git@github.com:pennersr/django-allauth.git@7429e13
