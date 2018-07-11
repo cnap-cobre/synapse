@@ -20,7 +20,6 @@ services:
       - stats:/code/stats
     ports:
       - "3001:3001"
-      - "5432:5432"
     depends_on:
       - db
   frontend:
