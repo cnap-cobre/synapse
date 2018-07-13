@@ -47,7 +47,6 @@ $(document).ready(function(){
     }
 
     pdp.initSidebarsCheck();
-    pdp.initMinimizeSidebar();
 
     $('.form-control').on("focus", function(){
         $(this).parent('.input-group').addClass("input-group-focus");
@@ -123,33 +122,6 @@ pdp = {
 
             mobile_menu_initialized = false;
         }
-    },
-
-    initMinimizeSidebar: function(){
-        $('#minimizeSidebar').click(function(){
-            var $btn = $(this);
-
-            if(pdp.misc.sidebar_mini_active == true){
-                $('body').removeClass('sidebar-mini');
-                $btn.html('<i class="ti-more-alt"></i>');
-                pdp.misc.sidebar_mini_active = false;
-
-            }else{
-                $('body').addClass('sidebar-mini');
-                $btn.html('<i class="ti-menu-alt"></i>');
-                pdp.misc.sidebar_mini_active = true;
-            }
-
-            // we simulate the window Resize so the charts will get updated in realtime.
-            var simulateWindowResize = setInterval(function(){
-                window.dispatchEvent(new Event('resize'));
-            },180);
-
-            // we stop the simulation of Window Resize after the animations are completed
-            setTimeout(function(){
-                clearInterval(simulateWindowResize);
-            },1000);
-        });
     },
 
     initSidebarMenu: function(){
