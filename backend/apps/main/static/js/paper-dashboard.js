@@ -54,27 +54,6 @@ $(document).ready(function(){
         $(this).parent(".input-group").removeClass("input-group-focus");
     });
 
-    //  Activate the tooltips
-    //$('[rel="tooltip"]').tooltip();
-
-
-    $('.switch').bootstrapSwitch({
-        onColor:'primary'
-    });
-
-    $('.switch-plain').bootstrapSwitch({
-        onColor:'',
-        onText: '',
-        offText: ''
-    });
-
-    $('.switch-icon').bootstrapSwitch({
-        onColor:'',
-        onText: '<i class="fa fa-check"></i>',
-        offText: '<i class="fa fa-times"></i>'
-    });
-
-
     //Activate tags
     //removed class label and label-color from tag span and replaced with data-color
     if($(".tagsinput").length != 0){
@@ -83,11 +62,6 @@ $(document).ready(function(){
         $('.tagsinput').tagsinput({
             tagClass: ' tag-'+ tagClass +' '
         });
-    }
-
-    //  Init Bootstrap Select Picker
-    if($(".selectpicker").length != 0){
-        $(".selectpicker").selectpicker();
     }
 
 });
