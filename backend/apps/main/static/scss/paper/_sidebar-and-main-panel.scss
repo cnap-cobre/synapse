@@ -354,21 +354,9 @@
     height: 100%;
 }
 
-// windows os settings for perfect scrollbar off
 .sidebar .sidebar-wrapper,
 .main-panel{
-    .perfect-scrollbar-on &,
-    &{
-        overflow: hidden;
-    }
-}
-
-// regular settings for perfect scrollbar off
-.perfect-scrollbar-off{
-    .sidebar .sidebar-wrapper,
-    .main-panel{
-        overflow: auto;
-    }
+    overflow: auto;
 }
 
 @media (min-width: $screen-md){

@@ -16,20 +16,6 @@
 @import "paper/variables";
 @import "paper/mixins";
 
-//plugins css
-@import "paper/plugins/animate";
-@import "paper/plugins/sweetalert2";
-@import "paper/plugins/bootstrap-table";
-@import "paper/plugins/datatables.net";
-@import "paper/plugins/fullcalendar";
-@import "paper/plugins/chartist";
-@import "paper/plugins/perfect-scrollbar";
-@import "paper/plugins/jquery.jvectormap";
-@import "paper/plugins/bootstrap-select";
-@import "paper/plugins/datetime-picker";
-@import "paper/plugins/nouislider";
-
-
 // Core CSS
 @import "paper/typography";
 @import "paper/sidebar-and-main-panel";
