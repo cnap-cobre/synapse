@@ -176,6 +176,8 @@ class HttpProxy(LoginRequiredMixin, View):
         }
         if request.META.get('CONTENT_TYPE'):
             headers['Content-type'] = request.META.get('CONTENT_TYPE')
+        if request.META.get('HTTP_DROPBOX_API_ARG'):
+            headers['Dropbox-API-Arg'] = request.META.get('HTTP_DROPBOX_API_ARG')
 
         request_url = self.get_full_url(self.url)
         body = request.body
