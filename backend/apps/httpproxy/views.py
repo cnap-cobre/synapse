@@ -189,6 +189,25 @@ class HttpProxy(LoginRequiredMixin, View):
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
+    def put(self, request, *args, **kwargs):
+        headers = {
+            'Authorization': 'Bearer ' + self.get_auth_token(request),
+        }
+        if request.META.get('CONTENT_TYPE'):
+            headers['Content-type'] = request.META.get('CONTENT_TYPE')
+
+        request_url = self.get_full_url(self.url)
+        body = request.body
+        response = requests.put(request_url, headers=headers, data=body)
+        print('put response', dir(response), '\n\n', response.text, '\n', response.reason, '\n', response.headers)
+        django_response = HttpResponse(response, status=response.status_code)
+        for header in response.headers:
+            if header not in ['Connection', 'Keep-Alive',
+                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+                django_response.__setitem__(header, response.headers[header])
+        return django_response
+
+
     def delete(self, request, *args, **kwargs):
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
