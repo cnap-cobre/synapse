@@ -15,7 +15,7 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
-    "react-icons": "^2.2.7",
+    "react-icons": "^3.0.5",
     "react-redux": "^5.0.7",
     "react-redux-notify": "^4.1.0",
     "react-spinners": "^0.3.2",
