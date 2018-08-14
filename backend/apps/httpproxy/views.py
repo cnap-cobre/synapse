@@ -129,10 +129,13 @@ class HttpProxy(LoginRequiredMixin, View):
         """
         proxy_root = self.original_request_path.rsplit(request.path, 1)[0]
         proxy_base = request.scheme + '://' + request.get_host() + proxy_root
-        response.content = response.content.decode('utf-8').replace(
-            self.base_url,
-            proxy_base
-        )
+        try:
+            response.content = response.content.decode('utf-8').replace(
+                self.base_url,
+                proxy_base
+            )
+        except UnicodeDecodeError:
+            pass
 
         return response
 
