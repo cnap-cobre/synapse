@@ -13,6 +13,7 @@ services:
     command: python3 manage.py runserver 0.0.0.0:3001
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.dev
+      - ENV=dev
     volumes:
       - ./backend:/code
       - stats:/code/stats
@@ -24,17 +25,22 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    environment:
+      - ENV=dev
     volumes:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
     ports:
       - "3000:3000"
+      - "8888:8888"
   webserver:
     build:
       context: ./webserver
       args:
         mode: dev
+    environment:
+      - ENV=dev
     ports:
       - "443:443"
       - "80:80"

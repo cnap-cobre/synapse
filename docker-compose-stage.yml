@@ -13,6 +13,7 @@ services:
     command: sh -c "gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3001 --workers 3 --reload"
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.stage
+      - ENV=stage
     volumes:
       - ./backend:/code
       - stats:/code/stats
@@ -24,6 +25,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile-prod
+    environment:
+      - ENV=stage
     volumes:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
@@ -35,6 +38,8 @@ services:
       context: ./webserver
       args:
         mode: stage
+    environment:
+      - ENV=stage
     volumes:
       - ./backend/static/:/static
       - ./frontend/dist/:/frontend
