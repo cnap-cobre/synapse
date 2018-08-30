@@ -10,7 +10,7 @@ services:
       context: ./backend
       args:
         mode: stage
-    command: sh -c "gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3001 --workers 5 --reload"
+    command: sh -c "python manage.py collectstatic --noinput; gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3001 --workers 5 --reload"
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.stage
       - ENV=stage
