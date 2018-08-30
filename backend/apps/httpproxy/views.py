@@ -128,7 +128,8 @@ class HttpProxy(LoginRequiredMixin, View):
             the hostname (and 'mount point' if not root) of the proxy.
         """
         proxy_root = self.original_request_path.rsplit(request.path, 1)[0]
-        proxy_base = request.scheme + '://' + request.get_host() + proxy_root
+        #proxy_base = request.scheme + '://' + request.get_host() + proxy_root
+        proxy_base = 'https://' + request.get_host() + proxy_root
         try:
             response.content = response.content.decode('utf-8').replace(
                 self.base_url,
