@@ -66,4 +66,4 @@ services:
 volumes:
   stats:
   db_data:
-  tls:certs:
+  tls_certs:
