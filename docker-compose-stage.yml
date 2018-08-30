@@ -10,7 +10,7 @@ services:
       context: ./backend
       args:
         mode: stage
-    command: sh -c "python manage.py collectstatic --noinput; gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3001 --workers 5 --reload"
+    command: sh -c "python manage.py collectstatic --noinput; gunicorn global.wsgi:application --name synapse --bind 0.0.0.0:3002 --workers 5 --reload"
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.stage
       - ENV=stage
@@ -18,7 +18,7 @@ services:
       - ./backend:/code
       - stats:/code/stats
     ports:
-      - "3001:3001"
+      - "3002:3002"
     depends_on:
       - db
   frontend:
@@ -33,7 +33,7 @@ services:
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
     ports:
-      - "3000:80"
+      - "3001:80"
       - "8888:8888"
   webserver:
     build:
@@ -45,12 +45,25 @@ services:
     volumes:
       - ./backend/static/:/static
       - ./frontend/dist/:/frontend
-    ports:
-      - "443:443"
-      - "80:80"
     depends_on:
       - backend
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    volumes:
+      - tls_certs:/config
+      - ./letsencrypt/:/config/nginx/site-confs/
+    environment:
+      - URL=synapse.ksu.edu
+      - VALIDATION=http
+      - TZ=America/Chicago
+      - EMAIL=kmdice@ksu.edu
+      - PGID=1000
+      - PUID=1000
+    ports:
+      - "80:80"
+      - "443:443"
 
 volumes:
   stats:
   db_data:
+  tls:certs:
