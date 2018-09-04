@@ -187,7 +187,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # API Base URLs for Proxying Requests
-API_BASE_URL_AGAVE = 'https://public.agaveapi.co'
+API_BASE_URL_AGAVE = 'https://api.tacc.utexas.edu'
 API_BASE_URL_DROPBOX = 'https://www.dropbox.com'
 API_BASE_URL_DROPBOX_API = 'https://api.dropboxapi.com'
 API_BASE_URL_DROPBOX_CONTENT = 'https://content.dropboxapi.com'

@@ -9,6 +9,7 @@ ACCOUNT_USERNAME_BLACKLIST=['admin']
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Synapse Email Confirmation"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL="/"
 
 SOCIALACCOUNT_PROVIDERS = {
     'globus': {
@@ -19,5 +20,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',
             'urn:globus:auth:scope:transfer.api.globus.org:all'
         ]
+    },
+    'agave': {
+        'AGAVE_URL': 'https://api.tacc.utexas.edu'
     }
 }
