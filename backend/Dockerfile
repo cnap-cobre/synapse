@@ -12,7 +12,7 @@ RUN gem install sass --version 3.5.6
 ADD requirements/*.txt /code/requirements/
 RUN pip install --upgrade pip
 RUN pip install -r requirements/$mode.txt
-RUN pip install git+git://github.com/kevindice/django-allauth@f00efe3
+RUN pip install git+git://github.com/kevindice/django-allauth@32c7c7
 
 RUN groupadd -r appuser -g 1000 \
     && useradd -u 1000 -r -g appuser -s /bin/false -c "App User" appuser \
