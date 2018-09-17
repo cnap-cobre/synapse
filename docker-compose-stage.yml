@@ -32,6 +32,7 @@ services:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
+      - npm_cache:/home/node/.npm
     ports:
       - "3001:80"
       - "8888:8888"
@@ -67,3 +68,4 @@ volumes:
   stats:
   db_data:
   tls_certs:
+  npm_cache:

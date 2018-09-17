@@ -31,6 +31,7 @@ services:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
       - stats:/usr/src/app/stats
+      - npm_cache:/home/pizza/.npm
     ports:
       - "3000:3000"
       - "8888:8888"
@@ -50,3 +51,4 @@ services:
 volumes:
   stats:
   db_data:
+  npm_cache:
