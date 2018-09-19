@@ -16,7 +16,7 @@
     "react-contexify": "^3.0.3",
     "react-dom": "^16.5.1",
     "react-hot-loader": "^4.3.8",
-    "react-icons": "^2.2.7",
+    "react-icons": "^3.1.0",
     "react-redux": "^5.0.7",
     "react-redux-notify": "^4.1.0",
     "react-spinners": "^0.4.5",
