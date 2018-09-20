@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
     'apps.main',
     'apps.httpproxy',
+    'apps.transfer',
 ]
 
 MIDDLEWARE = [

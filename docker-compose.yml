@@ -17,6 +17,7 @@ services:
     volumes:
       - ./backend:/code
       - stats:/code/stats
+      - /tmp/cnap:/transient
     ports:
       - "3001:3001"
     depends_on:
