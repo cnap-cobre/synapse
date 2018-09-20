@@ -26,6 +26,7 @@ from apps.dropbox_proxy.views import DropboxProxy, \
 from apps.globus_proxy.views import GlobusProxy
 
 urlpatterns = [
+    re_path('^admin/', include('smuggler.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     re_path(r'^agave/', AgaveProxy.as_view(

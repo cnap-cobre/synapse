@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'compressor',
     'django_gravatar',
     'rest_framework',
+    'smuggler',
 
     'apps.main',
     'apps.httpproxy',
