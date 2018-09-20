@@ -11,7 +11,6 @@ class AgaveAdapter():
             raise PermissionDenied('No agave token found.')
 
         token = token_query.get().token
-        print(token)
 
         systemId = remotePath.split('/')[1]
         remoteFilePath = '/'.join(remotePath.split('/')[2:])
