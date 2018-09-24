@@ -32,6 +32,9 @@ SECRET_KEY = Secret.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+ADMINS = ['kevin.dice1@gmail.com']
+SERVER_EMAIL = ['noreply@synapse.ksu.edu']
+
 ALLOWED_HOSTS = ['hosted.beocat.ksu.edu',
                  'hosted.beocat.ksu.edu:10443',
                  'synapse.ksu.edu',
