@@ -25,7 +25,7 @@ class AgaveProxy(HttpProxy):
         token = agave_tokens.get()
 
         # Renew if token has expired
-        if token.expires_at < timezone.now() + timedelta(hours=1):
+        if token.expires_at < timezone.now():
             profile.renew_tokens()
             return profile.tokens.filter(app__provider='agave').get().token
 
