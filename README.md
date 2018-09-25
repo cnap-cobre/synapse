@@ -1,4 +1,4 @@
-*In development.  Not ready for production use.  Contact contributors for project status.*
+*Pre-alpha.  Viable production deployment coming mid-October 2018.*
 
 <div align="center">
 <br><br>
