@@ -8,6 +8,8 @@ from django.utils.six.moves import urllib
 from django.views.generic import View
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.utils.decorators import method_decorator
 
 from .recorder import ProxyRecorder
 
@@ -83,6 +85,7 @@ class HttpProxy(LoginRequiredMixin, View):
 
     _msg = 'Response body: \n%s'
 
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.url = request.path[len(reverse(self.url_name)):]
         self.original_request_path = request.path
@@ -161,6 +164,7 @@ class HttpProxy(LoginRequiredMixin, View):
         url = urllib.parse(self.base_url)
         return ProxyRecorder(domain=url.hostname, port=(url.port or 80))
 
+    @method_decorator(csrf_protect)
     def get(self, request, *args, **kwargs):
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
@@ -174,7 +178,13 @@ class HttpProxy(LoginRequiredMixin, View):
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
+    @method_decorator(csrf_exempt)
     def post(self, request, *args, **kwargs):
+        body = request.body
+        return self._post(request, body, *args, **kwargs)
+
+    @method_decorator(csrf_protect)
+    def _post(self, request, body, *args, **kwargs):
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
         }
@@ -184,7 +194,6 @@ class HttpProxy(LoginRequiredMixin, View):
             headers['Dropbox-API-Arg'] = request.META.get('HTTP_DROPBOX_API_ARG')
 
         request_url = self.get_full_url(self.url)
-        body = request.body
         response = requests.post(request_url, headers=headers, data=body)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
@@ -193,6 +202,7 @@ class HttpProxy(LoginRequiredMixin, View):
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
+    @method_decorator(csrf_protect)
     def put(self, request, *args, **kwargs):
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),
@@ -211,7 +221,7 @@ class HttpProxy(LoginRequiredMixin, View):
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
-
+    @method_decorator(csrf_protect)
     def delete(self, request, *args, **kwargs):
         headers = {
             'Authorization': 'Bearer ' + self.get_auth_token(request),

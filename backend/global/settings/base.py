@@ -198,6 +198,8 @@ API_BASE_URL_DROPBOX_API = 'https://api.dropboxapi.com'
 API_BASE_URL_DROPBOX_CONTENT = 'https://content.dropboxapi.com'
 API_BASE_URL_GLOBUS = 'https://auth.globus.org'
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 150 * 1024 * 1024
+
 # Frontend Assets
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sass --scss {infile} {outfile}'),
