@@ -3,3 +3,5 @@ secret.py
 __pycache__
 static/*
 media/*
+celerybeat-schedule
+celerybeat.pid

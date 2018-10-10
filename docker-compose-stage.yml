@@ -5,6 +5,8 @@ services:
     image: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
+  redis:
+    image: "redis:alpine"
   backend:
     build:
       context: ./backend
@@ -22,6 +24,34 @@ services:
       - "3002:3002"
     depends_on:
       - db
+  celery:
+    build:
+      context: ./backend
+      args:
+        mode: stage
+    command: celery -A global.celery_config:app worker -l info
+    environment:
+      - DJANGO_SETTINGS_MODULE=global.settings.stage
+      - ENV=stage
+    volumes:
+      - ./backend:/code
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build:
+      context: ./backend
+      args:
+        mode: stage
+    command: celery -A global.celery_config:app beat -l info
+    environment:
+      - DJANGO_SETTINGS_MODULE=global.settings.stage
+      - ENV=stage
+    volumes:
+      - ./backend:/code
+    depends_on:
+      - db
+      - redis
   frontend:
     build:
       context: ./frontend
