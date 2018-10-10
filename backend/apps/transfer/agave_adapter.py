@@ -12,8 +12,9 @@ class AgaveAdapter():
 
         token = token_query.get().token
 
-        systemId = remotePath.split('/')[1]
-        remoteFilePath = '/'.join(remotePath.split('/')[2:])
+        systemProvider = remotePath.split('/')[1]
+        systemId = remotePath.split('/')[2]
+        remoteFilePath = '/'.join([''] + remotePath.split('/')[3:])
         downloadDirectory = '/transient/%s/' % uniqueBatchId
         fullLocalPath = downloadDirectory + localPath
 
@@ -35,10 +36,10 @@ class AgaveAdapter():
 
         token = token_query.get().token
 
-        systemId = remotePath.split('/')[1]
-        remoteFilePath = '/'.join(remotePath.split('/')[2:])
+        systemProvider = remotePath.split('/')[1]
+        systemId = remotePath.split('/')[2]
+        remoteFilePath = '/'.join([''] + remotePath.split('/')[3:-1])
         fullLocalPath = '/transient/%s/' % uniqueBatchId + localPath
-        print(remoteFilePath)
 
         ag = Agave(api_server=settings.API_BASE_URL_AGAVE, token=token)
         f = open(fullLocalPath, 'rb')

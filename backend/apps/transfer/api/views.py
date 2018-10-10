@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from ..dropbox_adapter import DropboxAdapter
 from ..agave_adapter import AgaveAdapter
 
+from .permissions import IsNotAllowed, IsTargetUser
 from .serializer import TransferBatchSerializer
 
 class TransferBatchViewSet(viewsets.ModelViewSet):
@@ -17,13 +18,24 @@ class TransferBatchViewSet(viewsets.ModelViewSet):
     queryset = TransferBatch.objects.all().order_by('user')
     serializer_class = TransferBatchSerializer
 
+    def get_permission(self):
+        print("action", self.action)
+        if self.action in ['update', 'partial_update', 'delete']:
+            return IsNotAllowed()
+        elif self.action in ['retrieve', 'create']:
+            return IsTargetUser()
+        elif self.action in ['list', 'metadata']:
+            return IsAuthenticated()
+        else:
+            return IsNotAllowed()
+
     @action(methods=['get'], detail=False)
     def dropbox_adapter_testing(self, request):
         print(request)
         print(request.path)
         dba = DropboxAdapter()
-        #dba.download('/synapse-logo.png', '/synapse-logo.png', request.user, 'a134radfpizza')
-        #dba.upload('/easy-eagle-dvd-with-audiio-1.mp4', '/airplane/easy-eagle-dvd-with-audio-1.mp4', request.user, 'pizza')
+        #dba.download('/intro-graphs.pdf', '/dropbox/home/intro-graphs.pdf', request.user, 'cake1')
+        #dba.upload('/intro-graphs.pdf', '/dropbox/home/intro-graphs.pdf', request.user, 'cake1')
         return HttpResponse('ASDF')
 
     @action(methods=['get'], detail=False)
@@ -31,6 +43,6 @@ class TransferBatchViewSet(viewsets.ModelViewSet):
         print(request)
         print(request.path)
         aga = AgaveAdapter()
-        #aga.download('/example.c', '/beocat-please-work/homes/kmdice/BrownianSimple3d/00-omp-naive.cpp', request.user, 'blue3')
-        aga.upload('testing123.txt', '/beocat-please-work/homes/kmdice/', request.user, 'blue4')
+        #aga.download('/ksupcapp.png', '/agave/beocat-kmdice-prod/homes/kmdice/ksupcapp.png', request.user, 'blue3')
+        #aga.upload('/ksupcapp.png', '/agave/beocat-kmdice-prod/homes/kmdice/ksupcapp.png', request.user, 'blue3')
         return HttpResponse('ASDFASDF')

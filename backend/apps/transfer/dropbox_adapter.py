@@ -12,15 +12,17 @@ class DropboxAdapter():
 
         token = token_query.get().token
 
+        systemProvider = remotePath.split('/')[1]
+        systemId = remotePath.split('/')[2]
+        remoteFilePath = '/'.join([''] + remotePath.split('/')[3:])
         downloadDirectory = '/transient/%s/' % uniqueBatchId
-        basename = os.path.basename(remotePath)
-        fullLocalPath = downloadDirectory + basename
+        fullLocalPath = downloadDirectory + localPath
 
         if not os.path.exists(downloadDirectory):
             os.makedirs(downloadDirectory)
 
         dbx = dropbox.Dropbox(token)
-        dbx.files_download_to_file(fullLocalPath, remotePath)
+        dbx.files_download_to_file(fullLocalPath, remoteFilePath)
         print(dbx.users_get_current_account())
 
 
@@ -33,6 +35,9 @@ class DropboxAdapter():
         token = token_query.get().token
         dbx = dropbox.Dropbox(token)
 
+        systemProvider = remotePath.split('/')[1]
+        systemId = remotePath.split('/')[2]
+        remoteFilePath = '/'.join([''] + remotePath.split('/')[3:])
         basename = os.path.basename(localPath)
         localDirectory = '/transient/%s/' % uniqueBatchId
         fullLocalPath = localDirectory + basename
@@ -43,11 +48,11 @@ class DropboxAdapter():
         f = open(fullLocalPath, "rb")
 
         if file_size <= CHUNK_SIZE:
-            dbx.files_upload(f.read(), remotePath)
+            dbx.files_upload(f.read(), remoteFilePath)
         else:
             upload_session = dbx.files_upload_session_start(f.read(CHUNK_SIZE))
             cursor = dropbox.files.UploadSessionCursor(session_id=upload_session.session_id, offset=f.tell())
-            commit = dropbox.files.CommitInfo(path=remotePath)
+            commit = dropbox.files.CommitInfo(path=remoteFilePath)
 
             while f.tell() < file_size:
                 if (file_size - f.tell()) <= CHUNK_SIZE:
