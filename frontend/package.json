@@ -19,7 +19,7 @@
     "react-dom": "^16.5.2",
     "react-dropzone": "^6.0.3",
     "react-hot-loader": "^4.3.11",
-    "react-icons": "^2.2.7",
+    "react-icons": "^3.2.0",
     "react-redux": "^5.0.7",
     "react-redux-notify": "^4.1.0",
     "react-spinners": "^0.4.5",
