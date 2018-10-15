@@ -27,6 +27,8 @@ services:
         mode: dev
         UID: 2000
         GID: 2000
+    environment:
+      - ENV=prod
     volumes:
       - './frontend:/usr/src/app'
       - '/usr/src/app/node_modules'
