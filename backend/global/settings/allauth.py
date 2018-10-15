@@ -22,6 +22,6 @@ SOCIALACCOUNT_PROVIDERS = {
         ]
     },
     'agave': {
-        'AGAVE_URL': 'https://api.tacc.utexas.edu'
+        'API_URL': 'https://api.tacc.utexas.edu'
     }
 }
