@@ -78,22 +78,9 @@ services:
       - ./frontend/dist/:/frontend
     depends_on:
       - backend
-  letsencrypt:
-    image: linuxserver/letsencrypt
-    volumes:
-      - tls_certs:/config
-      - ./letsencrypt/:/config/nginx/site-confs/
-    environment:
-      - URL=synapse.ksu.edu
-      - VALIDATION=http
-      - TZ=America/Chicago
-      - EMAIL=kmdice@ksu.edu
-      - PGID=1000
-      - PUID=1000
     ports:
       - "80:80"
       - "443:443"
-
 volumes:
   stats:
   db_data:
