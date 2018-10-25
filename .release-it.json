@@ -1,5 +1,5 @@
 {
-  "pkgFiles": ["frontend/package.json"],
+  "pkgFiles": ["frontend/package.json", "frontend/package-lock.json"],
   "github": {
     "release": true,
     "releaseName": "v%s",
