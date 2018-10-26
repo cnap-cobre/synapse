@@ -12,3 +12,4 @@ agavepy==0.7.3
 django-debug-toolbar==1.9.1
 celery==4.2.1
 redis==2.10.6
+watchdog==0.9.0

@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
+from ..tasks import launchBatchTransfers
+
 from django.http import HttpResponse
 
 from ..dropbox_adapter import DropboxAdapter
@@ -43,6 +45,11 @@ class TransferBatchViewSet(viewsets.ModelViewSet):
         print(request)
         print(request.path)
         aga = AgaveAdapter()
-        #aga.download('/ksupcapp.png', '/agave/beocat-kmdice-prod/homes/kmdice/ksupcapp.png', request.user, 'blue3')
+        #aga.download('pizza/ksupcapp.png', '/agave/beocat-kmdice-prod/homes/kmdice/ksupcapp.png', request.user, 'blue3')
         #aga.upload('/ksupcapp.png', '/agave/beocat-kmdice-prod/homes/kmdice/ksupcapp.png', request.user, 'blue3')
         return HttpResponse('ASDFASDF')
+
+    @action(methods=['get'], detail=False)
+    def launch_chain(self, request):
+        #launchBatchTransfers.delay()
+        return HttpResponse('CAKE')

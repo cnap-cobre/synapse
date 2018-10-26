@@ -223,8 +223,8 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {
-    'hello' : {
-        'task': 'apps.transfer.tasks.hello',
-        'schedule': crontab()
-    }
+    # 'hello' : {
+    #     'task': 'apps.transfer.tasks.launchBatchTransfers',
+    #     'schedule': crontab()
+    # }
 }

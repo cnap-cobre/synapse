@@ -1,6 +1,7 @@
 from allauth.socialaccount.models import SocialAccount, SocialToken
 import dropbox
 import os
+from django.core.exceptions import PermissionDenied
 
 
 class DropboxAdapter():
@@ -21,9 +22,12 @@ class DropboxAdapter():
         if not os.path.exists(downloadDirectory):
             os.makedirs(downloadDirectory)
 
+        fullLocalDir = '/'.join(fullLocalPath.split('/')[0:-1] + [''])
+        if not os.path.exists(fullLocalDir):
+            os.makedirs(fullLocalDir)
+
         dbx = dropbox.Dropbox(token)
         dbx.files_download_to_file(fullLocalPath, remoteFilePath)
-        print(dbx.users_get_current_account())
 
 
     def upload(self, localPath, remotePath, user, uniqueBatchId):
@@ -38,9 +42,7 @@ class DropboxAdapter():
         systemProvider = remotePath.split('/')[1]
         systemId = remotePath.split('/')[2]
         remoteFilePath = '/'.join([''] + remotePath.split('/')[3:])
-        basename = os.path.basename(localPath)
-        localDirectory = '/transient/%s/' % uniqueBatchId
-        fullLocalPath = localDirectory + basename
+        fullLocalPath = '/transient/%s/' % uniqueBatchId + localPath
 
         file_size = os.path.getsize(fullLocalPath)
         CHUNK_SIZE = 4 * 1024 * 1024

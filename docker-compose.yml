@@ -29,12 +29,13 @@ services:
       context: ./backend
       args:
         mode: dev
-    command: celery -A global.celery_config:app worker -l info
+    command: watchmedo auto-restart -- celery -A global.celery_config:app worker -l info
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.dev
       - ENV=dev
     volumes:
       - ./backend:/code
+      - /tmp/cnap:/transient
     depends_on:
       - db
       - redis
