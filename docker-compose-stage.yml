@@ -35,6 +35,7 @@ services:
       - ENV=stage
     volumes:
       - ./backend:/code
+      - /tmp/cnap:/transient
     depends_on:
       - db
       - redis
