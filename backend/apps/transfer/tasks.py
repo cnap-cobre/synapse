@@ -1,7 +1,7 @@
 from celery import shared_task
 from .models import TransferBatch, TransferFile
 
-@shared_task
+@shared_task(time_limit=600, default_retry_delay=30, max_retries=3)
 def filePendingToDownloading(fileId):
     file = TransferFile.objects.get(id=fileId)
     file.status = 'DL'
@@ -16,11 +16,13 @@ def filePendingToDownloading(fileId):
     except ValueError:
         print("Provider not matched on download.")
         fileDownloadingToDownloadFailed.delay(fileId)
+        raise
     except:
         print("Some fatal error occurred")
         import traceback
         traceback.print_exc()
         fileDownloadingToDownloadFailed.delay(fileId)
+        raise
 
 @shared_task
 def fileDownloadingToDownloadSucceeded(fileId):
@@ -40,7 +42,7 @@ def fileDownloadingToDownloadFailed(fileId):
 
     #filePendingToDownloading.delay(fileId)
 
-@shared_task
+@shared_task(time_limit=600, default_retry_delay=30, max_retries=3)
 def fileDownloadSucceededToUploading(fileId):
     file = TransferFile.objects.get(id=fileId)
     file.status = 'UP'
@@ -53,11 +55,13 @@ def fileDownloadSucceededToUploading(fileId):
     except ValueError:
         print("Provider not matched on upload.")
         fileUploadingToUploadFailed.delay(fileId)
+        raise
     except:
         print("Some fatal error occurred")
         import traceback
         traceback.print_exc()
         fileUploadingToUploadFailed.delay(fileId)
+        raise
 
 @shared_task
 def fileUploadingToUploadFailed(fileId):
