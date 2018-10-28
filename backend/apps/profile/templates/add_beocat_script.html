@@ -3,8 +3,8 @@
 ssh-keygen -f ~/.ssh/synapse_agave -t rsa -N ''
 cat ~/.ssh/synapse_agave.pub >> ~/.ssh/authorized_keys
 
-PRIVATE_KEY=`cat ~/.ssh/synapse_agave{# | awk '$1=$1' ORS='!!!'#}`
-PUBLIC_KEY=`cat ~/.ssh/synapse_agave.pub{# | awk '$1=$1' ORS='!!!'#}`
+PRIVATE_KEY=`cat ~/.ssh/synapse_agave | awk '$1=$1' ORS='\\n'`
+PUBLIC_KEY=`cat ~/.ssh/synapse_agave.pub | awk '$1=$1' ORS='\\n'`
 
 curl -0 -v -k -X POST https://{{request.get_host}}/agave/systems/v2/ \
 --header "Content-Type: application/json; charset=utf-8" \
@@ -13,7 +13,7 @@ curl -0 -v -k -X POST https://{{request.get_host}}/agave/systems/v2/ \
 --cookie "csrftoken={{ csrftoken }}; sessionid={{ sessionkey }}" \
 -d @- << EOF
 {
-  "id": "beocat-potato2-`whoami`",
+  "id": "beocat-potato9-`whoami`",
   "name": "Beocat",
   "status": "UP",
   "type": "STORAGE",
