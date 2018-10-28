@@ -44,7 +44,7 @@ services:
       context: ./backend
       args:
         mode: prod
-    command: celery -A global.celery_config:app beat -l info
+    command: sh -c 'rm celerybeat.pid; celery -A global.celery_config:app beat -l info'
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.prod
       - ENV=prod
