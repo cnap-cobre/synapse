@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-ssh-keygen -f ~/.ssh/synapse_agave -t rsa -N ''
+echo -e 'y\n' | ssh-keygen -f ~/.ssh/synapse_agave -t rsa -N ''
 cat ~/.ssh/synapse_agave.pub >> ~/.ssh/authorized_keys
 
 PRIVATE_KEY=`cat ~/.ssh/synapse_agave | awk '$1=$1' ORS='\\\\n'`
