@@ -1,0 +1,34 @@
+#!/bin/bash -l
+
+ssh-keygen -f ~/.ssh/synapse_agave -t rsa -N ''
+cat ~/.ssh/synapse_agave.pub >> ~/.ssh/authorized_keys
+
+PRIVATE_KEY=`cat ~/.ssh/synapse_agave{# | awk '$1=$1' ORS='!!!'#}`
+PUBLIC_KEY=`cat ~/.ssh/synapse_agave.pub{# | awk '$1=$1' ORS='!!!'#}`
+
+curl -0 -v -k -X POST https://{{request.get_host}}/agave/systems/v2/ \
+--header "Content-Type: application/json; charset=utf-8" \
+--header "X-CSRFToken: {{ csrftoken }}" \
+--referer "https://{{ request.get_host }}{{request.get_full_path }}" \
+--cookie "csrftoken={{ csrftoken }}; sessionid={{ sessionkey }}" \
+-d @- << EOF
+{
+  "id": "beocat-potato2-`whoami`",
+  "name": "Beocat",
+  "status": "UP",
+  "type": "STORAGE",
+  "description": "Beocat supercomputer at K-State",
+  "site": "beocat.ksu.edu",
+  "storage": {
+    "host": "beocat.ksu.edu",
+    "port": 22,
+    "protocol": "SFTP",
+    "auth": {
+      "username": "`whoami`",
+      "publicKey": "${PUBLIC_KEY}",
+      "privateKey": "${PRIVATE_KEY}",
+      "type": "SSHKEYS"
+    }
+  }
+}
+EOF

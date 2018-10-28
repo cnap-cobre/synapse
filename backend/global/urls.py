@@ -45,6 +45,7 @@ urlpatterns = [
         url_name='glpx'
     ), name='glpx'),
     re_path(r'^api/v1/', include('global.apiurls')),
+    re_path(r'^profile/', include('apps.profile.urls')),
     re_path(r'^.*', main_views.app, name='app'),
 ]
 
