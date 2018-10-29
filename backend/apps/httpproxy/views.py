@@ -213,7 +213,6 @@ class HttpProxy(LoginRequiredMixin, View):
         request_url = self.get_full_url(self.url)
         body = request.body
         response = requests.put(request_url, headers=headers, data=body)
-        print('put response', dir(response), '\n\n', response.text, '\n', response.reason, '\n', response.headers)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
             if header not in ['Connection', 'Keep-Alive',
