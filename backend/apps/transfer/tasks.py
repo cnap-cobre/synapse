@@ -1,14 +1,14 @@
 from celery import shared_task
 from .models import TransferBatch, TransferFile
 
-@shared_task(time_limit=600, default_retry_delay=30, max_retries=3)
-def filePendingToDownloading(fileId):
+@shared_task(bind=True, time_limit=600, default_retry_delay=30, max_retries=3)
+def filePendingToDownloading(self, fileId):
     file = TransferFile.objects.get(id=fileId)
     file.status = 'DL'
     file.save()
-    print("File Pending and downloading now")
-    print("To Path:", file.toPath)
-    print("From Path:", file.fromPath)
+    print("File Pending and downloading now", file.fromPath)
+    #print("To Path:", file.toPath)
+    #print("From Path:", file.fromPath)
 
     try:
         file.download()
@@ -22,6 +22,7 @@ def filePendingToDownloading(fileId):
         import traceback
         traceback.print_exc()
         fileDownloadingToDownloadFailed.delay(fileId)
+        self.Task.retry()
         raise
 
 @shared_task
@@ -40,10 +41,8 @@ def fileDownloadingToDownloadFailed(fileId):
     file.save()
     print("file DL failed: ", file.fromPath)
 
-    #filePendingToDownloading.delay(fileId)
-
-@shared_task(time_limit=600, default_retry_delay=30, max_retries=3)
-def fileDownloadSucceededToUploading(fileId):
+@shared_task(bind=True, time_limit=600, default_retry_delay=30, max_retries=3)
+def fileDownloadSucceededToUploading(self, fileId):
     file = TransferFile.objects.get(id=fileId)
     file.status = 'UP'
     file.save()
@@ -61,6 +60,7 @@ def fileDownloadSucceededToUploading(fileId):
         import traceback
         traceback.print_exc()
         fileUploadingToUploadFailed.delay(fileId)
+        self.Task.retry()
         raise
 
 @shared_task
@@ -69,8 +69,6 @@ def fileUploadingToUploadFailed(fileId):
     file.status = 'UF'
     file.save()
     print("file UP failed: ", file.toPath)
-
-    # fileDownloadSucceededToUploading.delay(fileId)
 
 @shared_task
 def fileUploadingToUploadSucceeded(fileId):

@@ -21,11 +21,11 @@ class TransferBatchSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'dateInitiated', 'files')
 
     def create(self, validated_data):
-        print(validated_data)
+        #print(validated_data)
         files_data = validated_data.pop('files')
         batch = TransferBatch.objects.create(**validated_data)
         for file_data in files_data:
-            print("file_data", file_data)
+            #print("file_data", file_data)
             fileObject = TransferFile.objects.create(batch=batch, **file_data)
             filePendingToDownloading.delay(fileObject.id)
         return batch
