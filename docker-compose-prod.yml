@@ -29,7 +29,7 @@ services:
       context: ./backend
       args:
         mode: prod
-    command: celery -A global.celery_config:app worker -l info --concurrency=20
+    command: celery -A global.celery_config:app worker -l info --logfile='/transient/logs/celery.log' --concurrency=20
     environment:
       - DJANGO_SETTINGS_MODULE=global.settings.prod
       - ENV=prod
