@@ -22,7 +22,7 @@ def filePendingToDownloading(self, fileId):
         import traceback
         traceback.print_exc()
         fileDownloadingToDownloadFailed.delay(fileId)
-        self.Task.retry()
+        self.retry(countdown=10)
         raise
 
 @shared_task
@@ -60,7 +60,7 @@ def fileDownloadSucceededToUploading(self, fileId):
         import traceback
         traceback.print_exc()
         fileUploadingToUploadFailed.delay(fileId)
-        self.Task.retry()
+        self.retry(countdown=10)
         raise
 
 @shared_task
