@@ -6,6 +6,7 @@ from .agave_adapter import AgaveAdapter
 from .dropbox_adapter import DropboxAdapter
 
 import hashlib
+import os
 
 class TransferBatch(models.Model):
     STATUS_CHOICES = (
@@ -100,3 +101,10 @@ class TransferFile(models.Model):
             )
         else:
             raise ValueError
+
+    def cleanup(self):
+        from_tokens = self.fromPath.split('/')
+        localPath = '/'.join([''] + from_tokens[3:])
+        fullLocalPath = '/transient/%s/' % self.batch.hash + localPath
+        if os.path.exists(fullLocalPath):
+            os.remove(fullLocalPath)

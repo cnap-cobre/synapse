@@ -75,6 +75,7 @@ def fileUploadingToUploadSucceeded(fileId):
     file = TransferFile.objects.get(id=fileId)
     file.status = 'US'
     file.save()
+    file.cleanup()
     print("file UP succeeded: ", file.toPath)
 
     fileUploadSucceededToComplete.delay(fileId)
