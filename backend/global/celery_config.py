@@ -6,6 +6,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "global.settings.prod")
 
 app = Celery('synapse')
 app.config_from_object('django.conf:settings', namespace='CELERY')
+app.conf.task_acks_late = True
+
 app.autodiscover_tasks()
 
 @app.task(bind=True)

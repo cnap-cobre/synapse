@@ -5,8 +5,16 @@ services:
     image: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
-  redis:
-    image: "redis:alpine"
+  flower:
+    image: mher/flower
+    command: --port=5555 --broker=amqp://rabbitmq:5672
+    ports:
+      - "5555:5555"
+  rabbitmq:
+    image: "rabbitmq:3.7.8-alpine"
+    volumes:
+      - rabbitmqdb:/var/lib/rabbitmq
+    hostname: rabbitmq
   backend:
     build:
       context: ./backend
@@ -38,7 +46,7 @@ services:
       - /tmp/cnap:/transient
     depends_on:
       - db
-      - redis
+      - rabbitmq
   celery-beat:
     build:
       context: ./backend
@@ -52,7 +60,7 @@ services:
       - ./backend:/code
     depends_on:
       - db
-      - redis
+      - rabbitmq
   frontend:
     build:
       context: ./frontend
@@ -84,3 +92,4 @@ volumes:
   stats:
   db_data:
   npm_cache:
+  rabbitmqdb:
