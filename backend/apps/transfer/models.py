@@ -64,46 +64,45 @@ class TransferFile(models.Model):
     fromPath = models.CharField(max_length=500)
     toPath = models.CharField(max_length=500)
 
+    def getFromAdapter(self):
+        from_tokens = self.fromPath.split('/')
+        if from_tokens[1] == 'dropbox':
+            return DropboxAdapter()
+        elif from_tokens[1] == 'agave':
+            return AgaveAdapter()
+        else:
+            raise ValueError
+
+    def getToAdapter(self):
+        to_tokens = self.toPath.split('/')
+        if to_tokens[1] == 'dropbox':
+            return DropboxAdapter()
+        elif to_tokens[1] == 'agave':
+            return AgaveAdapter()
+        else:
+            raise ValueError
+
     def download(self):
         from_tokens = self.fromPath.split('/')
         local_path = '/'.join([''] + from_tokens[3:])
-        if from_tokens[1] == 'dropbox':
-            DropboxAdapter().download(
-                local_path,
-                self.fromPath,
-                self.batch.user,
-                self.batch.hash
-            )
-        elif from_tokens[1] == 'agave':
-            AgaveAdapter().download(
-                local_path,
-                self.fromPath,
-                self.batch.user,
-                self.batch.hash
-            )
-        else:
-            raise ValueError
+        adapter = self.getFromAdapter()
+        adapter.download(
+            local_path,
+            self.fromPath,
+            self.batch.user,
+            self.batch.hash
+        )
 
     def upload(self):
         from_tokens = self.fromPath.split('/')
         local_path = '/'.join([''] + from_tokens[3:])
-        to_tokens = self.toPath.split('/')
-        if to_tokens[1] == 'dropbox':
-            DropboxAdapter().upload(
-                local_path,
-                self.toPath,
-                self.batch.user,
-                self.batch.hash
-            )
-        elif to_tokens[1] == 'agave':
-            AgaveAdapter().upload(
-                local_path,
-                self.toPath,
-                self.batch.user,
-                self.batch.hash
-            )
-        else:
-            raise ValueError
+        adapter = self.getToAdapter()
+        adapter.upload(
+            local_path,
+            self.toPath,
+            self.batch.user,
+            self.batch.hash
+        )
 
     def cleanup(self):
         from_tokens = self.fromPath.split('/')
