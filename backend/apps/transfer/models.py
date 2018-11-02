@@ -43,10 +43,13 @@ class TransferFile(models.Model):
         ('CP', 'complete')
     )
 
-    # State transition table
+    # State transition table for files
     # PD => DL => DS => UP => US => CP
-    # DL => DF => DL
-    # UP => UF => UP
+    # DL => DF => DL   (error condition)
+    # UP => UF => UP   (error condition)
+
+    # State transition table for directories
+    #
 
     batch = models.ForeignKey('TransferBatch',
         on_delete=models.CASCADE,

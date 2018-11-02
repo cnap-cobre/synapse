@@ -5,8 +5,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from ..tasks import launchBatchTransfers
-
 from django.http import HttpResponse
 
 from ..dropbox_adapter import DropboxAdapter

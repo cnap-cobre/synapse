@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from apps.transfer.models import TransferBatch, TransferFile
-from ..tasks import filePendingToDownloading
 
 
 class TransferFileSerializer(serializers.ModelSerializer):
@@ -27,5 +26,4 @@ class TransferBatchSerializer(serializers.ModelSerializer):
         for file_data in files_data:
             #print("file_data", file_data)
             fileObject = TransferFile.objects.create(batch=batch, **file_data)
-            filePendingToDownloading.delay(fileObject.id)
         return batch
