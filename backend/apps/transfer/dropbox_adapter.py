@@ -75,3 +75,35 @@ class DropboxAdapter():
                     print(cursor.offset)
 
         f.close()
+
+    def list_directory(self, path, user):
+        token_query = user.profile.tokens.filter(app__provider='dropbox')
+
+        if not token_query.exists():
+            raise PermissionDenied('No dropbox token found.')
+
+        token = token_query.get().token
+        dbx = dropbox.Dropbox(token)
+
+        systemProvider = path.split('/')[1]
+        systemId = path.split('/')[2]
+        directoryPath = '/'.join([''] + path.split('/')[3:])
+
+        response = dbx.files_list_folder(directoryPath)
+        print(response)
+
+        return {
+            'directories': [
+                '/'.join(path.split('/')[0:3]) + d.path_display + '/'
+                for d in
+                filter(lambda x: isinstance(x, dropbox.files.FolderMetadata), response.entries)
+            ],
+            'files': [
+                '/'.join(path.split('/')[0:3]) + f.path_display
+                for f in
+                filter(lambda x: isinstance(x, dropbox.files.FileMetadata), response.entries)
+            ]
+        }
+
+    def create_directory(self, path, user):
+        pass

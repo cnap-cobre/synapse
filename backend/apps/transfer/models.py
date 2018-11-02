@@ -43,7 +43,9 @@ class TransferFile(models.Model):
         ('UP', 'uploading'),
         ('UF', 'upload failed'),
         ('US', 'upload succeeded'),
-        ('CP', 'complete')
+        ('CP', 'complete'),
+
+        ('ED', 'expanding directory'),
     )
 
     # State transition table for files
@@ -52,7 +54,7 @@ class TransferFile(models.Model):
     # UP => UF => UP   (error condition)
 
     # State transition table for directories
-    #
+    # PD => ED => CP
 
     batch = models.ForeignKey(
         'TransferBatch',
