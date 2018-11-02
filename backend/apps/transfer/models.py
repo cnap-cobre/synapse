@@ -64,7 +64,7 @@ class TransferFile(models.Model):
     fromPath = models.CharField(max_length=500)
     toPath = models.CharField(max_length=500)
 
-    def getFromAdapter(self):
+    def get_from_adapter(self):
         from_tokens = self.fromPath.split('/')
         if from_tokens[1] == 'dropbox':
             return DropboxAdapter()
@@ -73,7 +73,7 @@ class TransferFile(models.Model):
         else:
             raise ValueError
 
-    def getToAdapter(self):
+    def get_to_adapter(self):
         to_tokens = self.toPath.split('/')
         if to_tokens[1] == 'dropbox':
             return DropboxAdapter()
@@ -85,7 +85,7 @@ class TransferFile(models.Model):
     def download(self):
         from_tokens = self.fromPath.split('/')
         local_path = '/'.join([''] + from_tokens[3:])
-        adapter = self.getFromAdapter()
+        adapter = self.get_from_adapter()
         adapter.download(
             local_path,
             self.fromPath,
@@ -96,7 +96,7 @@ class TransferFile(models.Model):
     def upload(self):
         from_tokens = self.fromPath.split('/')
         local_path = '/'.join([''] + from_tokens[3:])
-        adapter = self.getToAdapter()
+        adapter = self.get_to_adapter()
         adapter.upload(
             local_path,
             self.toPath,
