@@ -3,6 +3,7 @@ from apps.profile.models import Profile
 from apps.user.api.serializers import full
 from django.contrib.auth.models import User
 
+
 class SocialAccountSerializer(serializers.Serializer):
     date_joined = serializers.DateTimeField()
     last_login = serializers.DateTimeField()

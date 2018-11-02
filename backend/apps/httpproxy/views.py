@@ -131,7 +131,6 @@ class HttpProxy(LoginRequiredMixin, View):
             the hostname (and 'mount point' if not root) of the proxy.
         """
         proxy_root = self.original_request_path.rsplit(request.path, 1)[0]
-        #proxy_base = request.scheme + '://' + request.get_host() + proxy_root
         proxy_base = 'https://' + request.get_host() + proxy_root
         try:
             response.content = response.content.decode('utf-8').replace(
@@ -173,8 +172,13 @@ class HttpProxy(LoginRequiredMixin, View):
         response = requests.get(request_url, headers=headers)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
-            if header not in ['Connection', 'Keep-Alive',
-                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+            if header not in [
+                'Connection',
+                'Keep-Alive',
+                'Content-Length',
+                'Transfer-Encoding',
+                'Content-Encoding'
+            ]:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
@@ -191,14 +195,20 @@ class HttpProxy(LoginRequiredMixin, View):
         if request.META.get('CONTENT_TYPE'):
             headers['Content-type'] = request.META.get('CONTENT_TYPE')
         if request.META.get('HTTP_DROPBOX_API_ARG'):
-            headers['Dropbox-API-Arg'] = request.META.get('HTTP_DROPBOX_API_ARG')
+            headers['Dropbox-API-Arg'] = \
+                request.META.get('HTTP_DROPBOX_API_ARG')
 
         request_url = self.get_full_url(self.url)
         response = requests.post(request_url, headers=headers, data=body)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
-            if header not in ['Connection', 'Keep-Alive',
-                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+            if header not in [
+                'Connection',
+                'Keep-Alive',
+                'Content-Length',
+                'Transfer-Encoding',
+                'Content-Encoding'
+            ]:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
@@ -215,8 +225,13 @@ class HttpProxy(LoginRequiredMixin, View):
         response = requests.put(request_url, headers=headers, data=body)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
-            if header not in ['Connection', 'Keep-Alive',
-                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+            if header not in [
+                'Connection',
+                'Keep-Alive',
+                'Content-Length',
+                'Transfer-Encoding',
+                'Content-Encoding'
+            ]:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
 
@@ -232,11 +247,15 @@ class HttpProxy(LoginRequiredMixin, View):
         response = requests.delete(request_url, headers=headers)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
-            if header not in ['Connection', 'Keep-Alive',
-                    'Content-Length', 'Transfer-Encoding', 'Content-Encoding']:
+            if header not in [
+                'Connection',
+                'Keep-Alive',
+                'Content-Length',
+                'Transfer-Encoding',
+                'Content-Encoding'
+            ]:
                 django_response.__setitem__(header, response.headers[header])
         return django_response
-
 
     def get_full_url(self, url):
         """

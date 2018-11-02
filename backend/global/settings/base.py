@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from .secret import Secret
 from .allauth import *
+from celery.schedules import crontab
 os.environ['HTTPS'] = "on"
 
 SITE_ID = 1
@@ -35,10 +36,12 @@ DEBUG = False
 ADMINS = ['kevin.dice1@gmail.com']
 SERVER_EMAIL = ['noreply@synapse.ksu.edu']
 
-ALLOWED_HOSTS = ['hosted.beocat.ksu.edu',
-                 'hosted.beocat.ksu.edu:10443',
-                 'synapse.ksu.edu',
-                ]
+ALLOWED_HOSTS = [
+    'hosted.beocat.ksu.edu',
+    'hosted.beocat.ksu.edu:10443',
+    'synapse.ksu.edu',
+]
+
 CSRF_TRUSTED_ORIGINS = ['synapse.ksu.edu']
 
 # Application definition
@@ -216,9 +219,8 @@ REST_FRAMEWORK = {
 
 
 # Celery Configuration
-from celery.schedules import crontab
 CELERY_BROKER_URL = 'amqp://rabbitmq:5672'
-#CELERY_RESULT_BACKEND = 'redis://redis:6379'
+# CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

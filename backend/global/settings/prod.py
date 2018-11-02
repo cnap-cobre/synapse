@@ -13,4 +13,3 @@ CSRF_TRUSTED_ORIGINS += ['localhost']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'apprelay.smtp.ksu.edu'
 DEFAULT_FROM_EMAIL = 'noreply@synapse.ksu.edu'
-

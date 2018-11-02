@@ -21,7 +21,10 @@ class Profile(models.Model):
 
     class Meta:
         permissions = (
-            ("can_view_full_profiles_of_others", "Can view full profiles of others"),
+            (
+                "can_view_full_profiles_of_others",
+                "Can view full profiles of others"
+            ),
         )
 
     @property

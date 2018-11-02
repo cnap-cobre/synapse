@@ -4,6 +4,7 @@ from .models import TransferBatch, TransferFile
 from apps.transfer.file_tasks import file_pending_to_downloading
 from apps.transfer.directory_tasks import expand_directory_listing
 
+
 # Trigger processing when TransferFile object is created
 @receiver(post_save, sender=TransferFile)
 def execute_after_save(sender, instance, created, *args, **kwargs):

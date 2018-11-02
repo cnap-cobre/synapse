@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 from .permissions import IsTargetUserOrHasPerm, IsNotAllowed
 from .serializers import basic, full
 
+
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows user profiles to be viewed

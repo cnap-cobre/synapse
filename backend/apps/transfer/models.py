@@ -8,6 +8,7 @@ from .dropbox_adapter import DropboxAdapter
 import hashlib
 import os
 
+
 class TransferBatch(models.Model):
     STATUS_CHOICES = (
         ('PD', 'pending'),
@@ -27,7 +28,9 @@ class TransferBatch(models.Model):
 
     def save(self, *args, **kwargs):
         if self.hash is None:
-            self.hash = hashlib.sha256((str(self.user) + str(datetime.now())).encode('utf-8')).hexdigest()[0:8]
+            self.hash = hashlib.sha256(
+                (str(self.user) + str(datetime.now())).encode('utf-8')
+            ).hexdigest()[0:8]
         super().save(*args, **kwargs)
 
 
@@ -51,7 +54,8 @@ class TransferFile(models.Model):
     # State transition table for directories
     #
 
-    batch = models.ForeignKey('TransferBatch',
+    batch = models.ForeignKey(
+        'TransferBatch',
         on_delete=models.CASCADE,
         related_name='files'
     )

@@ -29,7 +29,6 @@ class DropboxAdapter():
         dbx = dropbox.Dropbox(token)
         dbx.files_download_to_file(fullLocalPath, remoteFilePath)
 
-
     def upload(self, localPath, remotePath, user, uniqueBatchId):
         token_query = user.profile.tokens.filter(app__provider='dropbox')
 
@@ -53,14 +52,25 @@ class DropboxAdapter():
             dbx.files_upload(f.read(), remoteFilePath)
         else:
             upload_session = dbx.files_upload_session_start(f.read(CHUNK_SIZE))
-            cursor = dropbox.files.UploadSessionCursor(session_id=upload_session.session_id, offset=f.tell())
+            cursor = dropbox.files.UploadSessionCursor(
+                session_id=upload_session.session_id,
+                offset=f.tell()
+            )
             commit = dropbox.files.CommitInfo(path=remoteFilePath)
 
             while f.tell() < file_size:
                 if (file_size - f.tell()) <= CHUNK_SIZE:
-                    dbx.files_upload_session_finish(f.read(CHUNK_SIZE), cursor, commit)
+                    dbx.files_upload_session_finish(
+                        f.read(CHUNK_SIZE),
+                        cursor,
+                        commit
+                    )
                 else:
-                    dbx.files_upload_session_append(f.read(CHUNK_SIZE), cursor.session_id, cursor.offset)
+                    dbx.files_upload_session_append(
+                        f.read(CHUNK_SIZE),
+                        cursor.session_id,
+                        cursor.offset
+                    )
                     cursor.offset = f.tell()
                     print(cursor.offset)
 

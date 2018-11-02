@@ -4,6 +4,7 @@ import os
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
+
 class AgaveAdapter():
     def download(self, localPath, remotePath, user, uniqueBatchId):
         token_query = user.profile.tokens.filter(app__provider='agave')
@@ -27,11 +28,13 @@ class AgaveAdapter():
             os.makedirs(fullLocalDir, mode=0o755, exist_ok=True)
 
         ag = Agave(api_server=settings.API_BASE_URL_AGAVE, token=token)
-        response = ag.files.download(filePath=remoteFilePath, systemId=systemId)
+        response = ag.files.download(
+            filePath=remoteFilePath,
+            systemId=systemId
+        )
         f = open(fullLocalPath, 'wb')
         f.write(response.content)
         f.close()
-
 
     def upload(self, localPath, remotePath, user, uniqueBatchId):
         token_query = user.profile.tokens.filter(app__provider='agave')
@@ -48,5 +51,9 @@ class AgaveAdapter():
 
         ag = Agave(api_server=settings.API_BASE_URL_AGAVE, token=token)
         f = open(fullLocalPath, 'rb')
-        response = ag.files.importData(filePath='' + remoteFilePath, systemId=systemId, fileToUpload=f)
+        response = ag.files.importData(
+            filePath='' + remoteFilePath,
+            systemId=systemId,
+            fileToUpload=f
+        )
         f.close()

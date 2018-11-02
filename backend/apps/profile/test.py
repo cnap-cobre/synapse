@@ -9,31 +9,41 @@ from .api.views import ProfileViewSet
 
 class ProfileTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='Bob',
-                email='bob@example.com', password='password')
+        self.user = User.objects.create_user(
+            username='Bob',
+            email='bob@example.com',
+            password='password'
+        )
 
     def test_auto_create_profile(self):
-        "Check that a profile object is automatically created when adding a user"
+        # Check that a profile object is automatically
+        # created when adding a user
         self.assertIsInstance(self.user.profile, Profile)
 
     def test_oauth_refresh_token_url_resolution(self):
         for provider in registry.get_list():
-            self.assertTrue('https' in
-                    util.get_provider(provider.id).profile_url)
+            self.assertTrue(
+                'https' in util.get_provider(provider.id).profile_url
+            )
 
     def test_oauth_get_protected_url(self):
         for provider in registry.get_list():
-            self.assertTrue('https' in
-                    util.get_provider(provider.id).access_token_url)
+            self.assertTrue(
+                'https' in util.get_provider(provider.id).access_token_url
+            )
 
 
 class ProfileAPIPermissionsTestCase(TestCase):
     def setUp(self):
         # 1. Create a regular user
         # 2. Create a super user
-        # 3. Create a regular user with the profile.can_view_full_profiles_of_others permission
-        # 4. Create a group with can_view_full_profiles_of_others permission and a user in that group
-        view_permission = Permission.objects.get(codename='can_view_full_profiles_of_others')
+        # 3. Create a regular user with the
+        #    profile.can_view_full_profiles_of_others permission
+        # 4. Create a group with can_view_full_profiles_of_others
+        #    permission and a user in that group
+        view_permission = Permission.objects.get(
+            codename='can_view_full_profiles_of_others'
+        )
 
         # 1.
         self.regular_user = User.objects.create_user(
@@ -76,22 +86,50 @@ class ProfileAPIPermissionsTestCase(TestCase):
         self.assertTrue(self.super_user.is_superuser)
 
     def test_permission_resolved_as_expected(self):
-        self.assertFalse(self.regular_user.has_perm('profile.can_view_full_profiles_of_others'))
-        self.assertTrue(self.super_user.has_perm('profile.can_view_full_profiles_of_others'))
-        self.assertTrue(self.regular_user_with_perm.has_perm('profile.can_view_full_profiles_of_others'))
-        self.assertTrue(self.regular_user_in_group.has_perm('profile.can_view_full_profiles_of_others'))
+        self.assertFalse(
+            self.regular_user.has_perm(
+                'profile.can_view_full_profiles_of_others'
+            )
+        )
+        self.assertTrue(
+            self.super_user.has_perm(
+                'profile.can_view_full_profiles_of_others'
+            )
+        )
+        self.assertTrue(
+            self.regular_user_with_perm.has_perm(
+                'profile.can_view_full_profiles_of_others'
+            )
+        )
+        self.assertTrue(
+            self.regular_user_in_group.has_perm(
+                'profile.can_view_full_profiles_of_others'
+            )
+        )
 
     def test_anon_should_be_forbidden(self):
         client = APIClient()
         some_uid = self.regular_user.id
 
         # API Root
-        self.assertEqual(client.get('/api/v1/', format='json').status_code, 403)
+        self.assertEqual(
+            client.get('/api/v1/', format='json').status_code,
+            403
+        )
 
         # List
-        self.assertEqual(client.get('/api/v1/profiles/', format='json').status_code, 403)
-        self.assertEqual(client.head('/api/v1/profiles/', format='json').status_code, 403)
-        self.assertEqual(client.options('/api/v1/profiles/', format='json').status_code, 403)
+        self.assertEqual(
+            client.get('/api/v1/profiles/', format='json').status_code,
+            403
+        )
+        self.assertEqual(
+            client.head('/api/v1/profiles/', format='json').status_code,
+            403
+        )
+        self.assertEqual(
+            client.options('/api/v1/profiles/', format='json').status_code,
+            403
+        )
 
         # Create New
         self.assertEqual(client.post('/api/v1/profiles/', {
@@ -99,16 +137,40 @@ class ProfileAPIPermissionsTestCase(TestCase):
         }, format='json').status_code, 403)
 
         # Individual
-        self.assertEqual(client.get('/api/v1/profiles/%d/' % some_uid, format='json').status_code, 403)
+        self.assertEqual(
+            client.get(
+                '/api/v1/profiles/%d/' % some_uid,
+                format='json'
+            ).status_code,
+            403
+        )
         self.assertEqual(client.put('/api/v1/profiles/%d/' % some_uid, {
             'institution': 'Kansas State University'
         }, format='json').status_code, 403)
         self.assertEqual(client.patch('/api/v1/profiles/%d/' % some_uid, {
             'institution': 'Kansas State University'
         }, format='json').status_code, 403)
-        self.assertEqual(client.delete('/api/v1/profiles/%d/' % some_uid, format='json').status_code, 403)
-        self.assertEqual(client.head('/api/v1/profiles/%d/' % some_uid, format='json').status_code, 403)
-        self.assertEqual(client.options('/api/v1/profiles/%d/' % some_uid, format='json').status_code, 403)
+        self.assertEqual(
+            client.delete(
+                '/api/v1/profiles/%d/' % some_uid,
+                format='json'
+            ).status_code,
+            403
+        )
+        self.assertEqual(
+            client.head(
+                '/api/v1/profiles/%d/' % some_uid,
+                format='json'
+            ).status_code,
+            403
+        )
+        self.assertEqual(
+            client.options(
+                '/api/v1/profiles/%d/' % some_uid,
+                format='json'
+            ).status_code,
+            403
+        )
 
     def test_anon_can_create_new_user_which_can_not_delete_itself(self):
         client = APIClient()
@@ -126,7 +188,10 @@ class ProfileAPIPermissionsTestCase(TestCase):
 
         # Delete it
         ron_id = User.objects.filter(username='ron').get().id
-        self.assertEqual(client.delete('/api/v1/users/%d/' % ron_id).status_code, 403)
+        self.assertEqual(
+            client.delete('/api/v1/users/%d/' % ron_id).status_code,
+            403
+        )
 
     def test_anon_can_not_create_new_staff_user(self):
         client = APIClient()
@@ -144,7 +209,10 @@ class ProfileAPIPermissionsTestCase(TestCase):
         client.force_authenticate(user=self.regular_user)
 
         # API Root
-        self.assertEqual(client.get('/api/v1/', format='json').status_code, 200)
+        self.assertEqual(
+            client.get('/api/v1/', format='json').status_code,
+            200
+        )
 
         # List
         list_response = client.get('/api/v1/profiles/', format='json')
@@ -152,20 +220,30 @@ class ProfileAPIPermissionsTestCase(TestCase):
         self.assertEqual(
             set(list_response.data[0]['user'].keys()),
             set(['id', 'username', 'url']))
-        self.assertEqual(client.head('/api/v1/profiles/', format='json').status_code, 200)
-        self.assertEqual(client.options('/api/v1/profiles/', format='json').status_code, 200)
+        self.assertEqual(
+            client.head('/api/v1/profiles/', format='json').status_code,
+            200
+        )
+        self.assertEqual(
+            client.options('/api/v1/profiles/', format='json').status_code,
+            200
+        )
 
     def test_regular_user_can_view_own_profile_in_full(self):
         client = APIClient()
         client.force_authenticate(user=self.regular_user)
         id = self.regular_user.id
 
-        single_response = client.get('/api/v1/profiles/%d/' % id, format='json')
+        single_response = client.get(
+            '/api/v1/profiles/%d/' % id,
+            format='json'
+        )
         self.assertEqual(single_response.status_code, 200)
         self.assertTrue(
-            set(['first_name', 'last_name', 'email', 'groups']).issubset(set(single_response.data['user'].keys()))
+            set(['first_name', 'last_name', 'email', 'groups']).issubset(
+                set(single_response.data['user'].keys())
+            )
         )
-
 
     def test_regular_user_can_create_new_users(self):
         client = APIClient()
@@ -199,7 +277,6 @@ class ProfileAPIPermissionsTestCase(TestCase):
             'password': 'neverneverland'
         }, format='json').status_code, 400)
 
-
     def test_regular_user_can_not_update_profiles_of_others(self):
         client = APIClient()
         client.force_authenticate(user=self.regular_user)
@@ -214,21 +291,39 @@ class ProfileAPIPermissionsTestCase(TestCase):
         client = APIClient()
         client.force_authenticate(user=self.regular_user)
 
-        # Partially Update Existing Profile - Should succeed because of ownership
-        self.assertEqual(client.patch('/api/v1/profiles/%d/' % self.regular_user.id, {
-            'institution': 'Washington State University'
-        }, format='json').status_code, 200)
+        # Partially Update Existing Profile
+        #  - Should succeed because of ownership
         self.assertEqual(
-            Profile.objects.filter(user_id=self.regular_user.id).get().institution,
-            'Washington State University')
+            client.patch(
+                '/api/v1/profiles/%d/' % self.regular_user.id,
+                {'institution': 'Washington State University'},
+                format='json'
+            ).status_code,
+            200
+        )
+        self.assertEqual(
+            Profile.objects.filter(
+                user_id=self.regular_user.id
+            ).get().institution,
+            'Washington State University'
+        )
 
-        # Full update of existing profile - should succeed because of ownership
-        self.assertEqual(client.put('/api/v1/profiles/%d/' % self.regular_user.id, {
-            'institution': 'Wichita State University',
-        }, format='json').status_code, 200)
+        # Full update of existing profile
+        #  - should succeed because of ownership
         self.assertEqual(
-            Profile.objects.filter(user_id=self.regular_user.id).get().institution,
-            'Wichita State University')
+            client.put(
+                '/api/v1/profiles/%d/' % self.regular_user.id,
+                {'institution': 'Wichita State University'},
+                format='json'
+            ).status_code,
+            200
+        )
+        self.assertEqual(
+            Profile.objects.filter(
+                user_id=self.regular_user.id
+            ).get().institution,
+            'Wichita State University'
+        )
 
     def test_privileged_user_can_see_full_profiles(self):
         client = APIClient()
@@ -241,8 +336,12 @@ class ProfileAPIPermissionsTestCase(TestCase):
 
         profile_list_response = client.get('/api/v1/profiles/', format='json')
         self.assertEqual(profile_list_response.status_code, 200)
-        self.assertTrue('groups' in profile_list_response.data[0]['user'].keys())
-        self.assertTrue('email' in profile_list_response.data[0]['user'].keys())
+        self.assertTrue(
+            'groups' in profile_list_response.data[0]['user'].keys()
+        )
+        self.assertTrue(
+            'email' in profile_list_response.data[0]['user'].keys()
+        )
 
     def test_user_profile_me_endpoint(self):
         client = APIClient()
@@ -261,9 +360,3 @@ class ProfileAPIPermissionsTestCase(TestCase):
             'username': 'morty',
             'email': 'morty@rickandmorty.com'
         }, my_profile.data['user'])
-
-
-
-
-
-
