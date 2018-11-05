@@ -7,3 +7,7 @@ from allauth.account.decorators import verified_email_required
 def app(request):
     template_name = "app.html"
     return render(request, template_name, {})
+
+def getting_started(request):
+    template_name = "getting_started.html"
+    return render(request, template_name, {})

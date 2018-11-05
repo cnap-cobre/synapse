@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/github-markdown.css' %}">
+    <title>Title</title>
+</head>
+<body>
+  <div class="markdown-body">
+      <h1>Getting Started</h1>
+
+      <p><em>
+          This guide is for CNAP researchers to get set up with Synapse,
+          a web-based "open science gateway".  With Synapse, you can
+          manage your files across Beocat, Dropbox, and other file systems;
+          tag your data with descriptive metadata; track change history and
+          transfer history of data; (evenutally) launch compute jobs on
+          Beocat; and more.
+      </em></p>
+
+      <p>Please reach out to <a href="mailto:kmdice@ksu.edu">kmdice@ksu.edu</a> with questions and issues.</p>
+
+      <h2>Directions</h2>
+
+      <h3>1. Sign up for a TACC account</h3>
+      <p>
+          Currently, we are making use of TACC's intance of the
+          <a target="_blank" href="https://agaveapi.co/">Agave Platform</a>.
+          We are working with TACC to deploy our own Agave instance soon,
+          but until then, a TACC account is required.
+      </p>
+      <p>
+          You can sign up for one here:  <a target="_blank" href="https://portal.tacc.utexas.edu/account-request">
+          https://portal.tacc.utexas.edu/account-request</a>
+      </p>
+      <em>(Please use your ksu.edu email address.)</em>
+
+      <h3>2. Sign in to Synapse via Agave</h3>
+      <p>
+          Synapse supports logging in with a few different 3rd party applications.
+          While you will have a username and password specifically for Synapse, you
+          can log in with Dropbox, Agave, or Globus.  Other providers may be added
+          in the future - perhaps Google, if and when we add support for Google Drive.
+      </p>
+      <p>
+          To sign in with Agave, click here: <a target="_blank" href="https://synapse.ksu.edu/accounts/agave/login/?process=login&next=%2F">https://synapse.ksu.edu/accounts/agave/login/?process=login&next=%2F</a>
+      </p>
+
+      <h3>3. Check your email for a verification link</h3>
+      <p>Click the verification link in the email.</p>
+
+      <h3>4. Link your Dropbox account</h3>
+      <p>
+          Go here (<a target="_blank" href="https://synapse.ksu.edu/accounts/social/connections/">
+          https://synapse.ksu.edu/accounts/social/connections/</a>) and click the "Sign in with Dropbox" button.
+          In the future, other accounts may be linked on this same page.
+      </p>
+
+      <h3>5. Connect your Beocat Account</h3>
+
+      <ul>
+          <li>
+              Go to:  <a href="https://synapse.ksu.edu/files/systems">https://synapse.ksu.edu/files/systems</a>
+          </li>
+          <li>
+              Click the "Link your Beocat Account" button.  A window should appear.
+          </li>
+          <li>Login to Beocat via SSH.  Linux and Mac have built-in SSH clients.
+              Simply type in the terminal "ssh <b>username</b>@beocat.ksu.edu"
+              and type in your KSU password when prompted.  For Windows,
+              <a target="_blank" href="https://www.putty.org/">PuTTY</a> is a
+              popular option.  Simply type "beocat.ksu.edu" as the hostname then
+              your username and password when prompted.
+          </li>
+          <li>
+              Copy the script from Synapse and run it in your SSH session.  This code
+              generates a public/private key pair and configures Synapse to have access
+              to your files on Beocat.
+          </li>
+      </ul>
+
+      <p>
+          Please let me know if you experience issues with this step.  We are working
+          to streamline it.  My apologies if it is a bit clunky.
+      </p>
+
+      <h3>6. Browse and Transfer Files</h3>
+
+      <p>You can browse your files here:  <a href="https://synapse.ksu.edu/files/browse/">https://synapse.ksu.edu/files/browse/</a></p>
+
+      <p>Note: Your Beocat home directory will follow the pattern:<br/>https://synapse.ksu.edu/files/browse/agave/beocat-prod-<b>username</b>/homes/<b>username</b>/<br/>...where <b>username</b> is your K-State EID.</p>
+
+      <p>
+          The interface is designed to be fairly intuitive.  To upload files, you can drag
+          and drop from a folder on your computer.  Ctrl+click or Shift+click to select
+          multiple files, and right-click to open a context menu with various file actions.
+      </p>
+
+      <h2>What's Next?</h2>
+
+      <p>
+          Sharing and metadata features are the top priority and will be added gradually over
+          the next few weeks.  We are aiming for a rolling release process where functionality
+          is made available to you as soon as it is ready, several times a week.  I would greatly
+          appreciate your feedback, both positive and negative.  If there are features you would
+          like to have, please let me know.  As always, I'm <a href="mailto:kmdice@ksu.edu">available to assist</a> with code for
+          individual projects.  Making your code fast is pretty fun, and it can save you a
+          lot of time.
+      </p>
+
+      <p>Features on the way include:</p>
+
+      <ul>
+          <li>Image preview</li>
+          <li>Text/Code file preview and editing in-browser</li>
+          <li>Support for zip downloads of folders</li>
+          <li>File history in the metadata panel</li>
+          <li>Visual real-time updates on the status of file transfers</li>
+          <li>JupyterHub integration for sharable Python notebooks</li>
+          <li>Custom metadata fields and automated metadata extraction from filename fields</li>
+          <li>Automated recurring backup file transfers</li>
+          <li>Globus support to connect to your PC's file system, even when you aren't physically near it</li>
+      </ul>
+
+      <hr/>
+
+      <h2>Updates:</h2>
+      <ul>
+          <li><strong>11/05/2018 -</strong> Initial writing</li>
+      </ul>
+  </div>
+</body>
+</html>
