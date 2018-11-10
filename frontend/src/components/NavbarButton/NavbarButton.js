@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import React from 'react';
-import {toggleMobileNav} from "../../actions/visualOptions";
+import {toggleMobileNav} from "../../store/VisualOptions";
 
 class NavbarButton extends React.Component {
   render() {

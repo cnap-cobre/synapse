@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
-import {fetchFilesIfNeeded} from "../../actions/files";
 import FileBreadcrumbs from "../TabbedFileBrowser/FileBrowser/FileBreadcrumbs/FileBreadcrumbs";
+import {fileListActions} from "../../store/Files";
 import Modal from 'react-bootstrap/lib/Modal';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { removeModal } from "../../actions/modals";
+import { removeModal } from "../../store/Modals";
 import TabbedDirectoryBrowser from '../TabbedDirectoryBrowser/TabbedDirectoryBrowser';
 
 
@@ -27,10 +27,6 @@ class TransferModal extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("PIZZA", props.browserPaths);
-    console.log("CAKE", props.fileSystems);
-    console.log("ASDF", props);
-
     this.state = {
       targetBrowserPaths: {
           ...props.browserPaths
@@ -43,8 +39,7 @@ class TransferModal extends React.Component {
   }
 
   updatePath = (path) => {
-    console.log("UPDATEPATH", path);
-    this.props.dispatch(fetchFilesIfNeeded(path));
+    this.props.dispatch(fileListActions.pending(path));
     this.setState({
       path,
       targetBrowserPaths: {

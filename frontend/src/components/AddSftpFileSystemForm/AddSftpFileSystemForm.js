@@ -1,5 +1,6 @@
-import {addModal} from "../../actions/modals";
+import {addModal} from "../../store/Modals";
 import Agave from '../../services/Agave';
+import { actions as agaveFileSystemsActions } from '../../store/AgaveFileSystems';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import {connect} from 'react-redux';
@@ -9,7 +10,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import React from 'react';
-import {invalidateAgaveFileSystems, requestAgaveFileSystems} from "../../actions/agaveFileSystems";
+
 
 class AddSftpFileSystemForm extends React.Component {
   constructor(props, context) {
@@ -216,8 +217,7 @@ class AddSftpFileSystemForm extends React.Component {
                       this.props.onFormSubmission(
                           this.mapToRequestShape(this.state)
                       ).then(() => {
-                        this.props.dispatch(invalidateAgaveFileSystems());
-                        this.props.dispatch(requestAgaveFileSystems());
+                        this.props.dispatch(agaveFileSystemsActions.pending());
                         this.props.dispatch(addModal({
                           modalType: 'successMessage',
                           text: 'The new SFTP file system has been added successfully.'

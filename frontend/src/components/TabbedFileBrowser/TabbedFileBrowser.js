@@ -1,18 +1,18 @@
+import {actions as agaveFileSystemsActions} from "../../store/AgaveFileSystems";
 import Alert from 'react-bootstrap/lib/Alert';
 import {connect} from 'react-redux';
-import {fetchAgaveFileSystemsIfNeeded} from "../../actions/agaveFileSystems";
-import {fetchFilesIfNeeded} from "../../actions/files";
-import {fetchProfileIfNeeded} from "../../actions/userProfile";
 import FileBrowser from "./FileBrowser/FileBrowser";
+import {fileListActions} from "../../store/Files";
 import {Link} from 'redux-json-router';
 import Loader from '../Loader/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {setBrowserPath} from "../../actions/browserPaths";
-import {setFocusedFile} from "../../actions/focusedFiles";
+import {setBrowserPath} from "../../store/BrowserPaths";
+import {setFocusedFile} from "../../store/FocusedFiles";
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
-import {toggleDotfiles} from "../../actions/visualOptions";
+import {toggleDotfiles} from "../../store/VisualOptions";
+import { actions as userProfileActions } from '../../store/UserProfile';
 import { push, replace } from 'redux-json-router';
 import './fileTabs.css';
 
@@ -39,21 +39,17 @@ class TabbedFileBrowser extends React.Component {
     }
 
     if(this.matchesFileSystem(this.props.path)) {
-      this.props.dispatch(fetchFilesIfNeeded(this.props.path));
+      this.props.dispatch(fileListActions.pending(this.props.path));
     } else {
-      this.props.dispatch(
-        fetchAgaveFileSystemsIfNeeded()
-      ).then(() => {
-        this.props.dispatch(fetchProfileIfNeeded());
-      }).then(() => {
-        this.props.dispatch(fetchFilesIfNeeded(this.props.path));
-      });
+      this.props.dispatch(agaveFileSystemsActions.pending());
+      this.props.dispatch(userProfileActions.pending());
+      this.props.dispatch(fileListActions.pending(this.props.path));
     }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if(prevProps.path !== this.props.path && this.matchesFileSystem(this.props.path)) {
-      this.props.dispatch(fetchFilesIfNeeded(this.props.path));
+      this.props.dispatch(fileListActions.pending(this.props.path));
     }
   }
 
@@ -192,7 +188,11 @@ const mapStateToProps = (store, ownProps) => {
 
   return{
     ...ownProps,
-    isReady: store.userProfile.hasFetched && store.fileSystems.hasFetched,
+    isReady: (
+        !store.userProfile.loading &&
+        !store.fileSystems.loading &&
+        store.fileSystems.systems.length !== 0
+    ),
     fileSystems,
     pathname: store.router.pathname,
     browserPaths: store.browserPaths,
@@ -209,7 +209,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(toggleDotfiles())
     },
     fetchFiles: (path) => {
-      dispatch(fetchFilesIfNeeded(path))
+      dispatch(fileListActions.pending(path))
     },
     dispatch
   };

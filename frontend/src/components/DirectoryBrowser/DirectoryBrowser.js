@@ -3,7 +3,7 @@ import {fileIconResolver} from "../../util/FileIconResolver";
 import Loader from "../Loader/Loader";
 import PropTypes from 'prop-types';
 import React from 'react';
-import {toggleDotfiles} from "../../actions/visualOptions";
+import {toggleDotfiles} from "../../store/VisualOptions";
 
 class DirectoryBrowser extends React.Component {
   static propTypes = {
@@ -48,15 +48,14 @@ const mapStateToProps = (store, ownProps) => {
   console.log("ownProps.path", ownProps.path);
   const filesAtPath = store.files[ownProps.path];
 
-  const loading = (filesAtPath === undefined || filesAtPath.isFetching);
-  const error = (!loading) && (filesAtPath.errorCode || !filesAtPath.hasFetched);
-  const list = (loading || error || filesAtPath.errorCode) ? [] : filesAtPath.files.filter((item) => item.type === 'dir');
+  const loading = (filesAtPath === undefined || filesAtPath.loading);
+  const list = (loading) ? [] : filesAtPath.files.filter((item) => item.type === 'dir');
 
   const showDotfiles = store.visualOptions.showDotfiles;
 
   return {
     loading,
-    error,
+    error: false, // TODO: fix hack
     list: list.filter(
       (item, i) => ((showDotfiles || !item.name.match(/^\./i)) && item.type === "dir")
     ),
