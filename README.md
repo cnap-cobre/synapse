@@ -1,4 +1,4 @@
-*Pre-alpha.  Viable production deployment coming mid-October 2018.*
+In production at [https://synapse.ksu.edu/](https://synapse.ksu.edu)
 
 <div align="center">
 <br><br>
