@@ -13,5 +13,6 @@ router.register(r'transfer_batches', TransferBatchViewSet)
 
 urlpatterns = [
     url(r'^auth/', include('rest_framework.urls')),
+    url(r'^rest-auth/', include('apps.accounts.urls')),
     url(r'^', include(router.urls))
 ]
