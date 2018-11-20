@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.profile',
-    'apps.accounts',
     'apps.user',
 
     'allauth',
@@ -70,7 +69,11 @@ INSTALLED_APPS = [
     'webpack_loader',
     'compressor',
     'django_gravatar',
+
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
     'smuggler',
 
     'apps.main',
