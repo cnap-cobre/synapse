@@ -51,9 +51,9 @@ urlpatterns = [
         name='social_account_disconnect'
     ),
 
-    url(r'^agave/$', AgaveLogin.as_view(), name='agave_login'),
-    url(r'^dropbox/$', DropboxLogin.as_view(), name='dropbox_login'),
-    url(r'^globus/$', GlobusLogin.as_view(), name='globus_login'),
+    url(r'^agave/$', AgaveLogin.as_view(), name='agave_login2'),
+    url(r'^dropbox/$', DropboxLogin.as_view(), name='dropbox_login2'),
+    url(r'^globus/$', GlobusLogin.as_view(), name='globus_login2'),
 
     url(r'^agave/connect/$', AgaveConnect.as_view(), name='agave_connect'),
     url(r'^dropbox/connect/$', DropboxConnect.as_view(), name='dropbox_connect'),
