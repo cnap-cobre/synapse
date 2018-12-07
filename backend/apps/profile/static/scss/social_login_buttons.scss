@@ -1,6 +1,7 @@
 $dropbox: #1087dd;
 $globus: #00377b;
 $agave: #00a7b8;
+$jupyter: #f37524;
 
 .btn-social {
     position: relative;
@@ -45,6 +46,12 @@ $agave: #00a7b8;
     &:hover { background-color: darken($agave, 10%); }
 }
 
+.btn-jupyterhub{
+    color: #fff;
+    background-color: $jupyter;
+    border-color: rgba(0,0,0,0.2);
+    &:hover { background-color: darken($jupyter, 10%); }
+}
 
 .login-or {
     margin: 1rem 0em;

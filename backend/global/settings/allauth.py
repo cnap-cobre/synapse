@@ -23,5 +23,8 @@ SOCIALACCOUNT_PROVIDERS = {
     },
     'agave': {
         'API_URL': 'https://api.tacc.utexas.edu'
+    },
+    'jupyterhub': {
+        'API_URL': 'https://jupyterhub.beocat.ksu.edu'
     }
 }

@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.agave',
     'allauth.socialaccount.providers.globus',
+    'allauth.socialaccount.providers.jupyterhub',
 
     'crispy_forms',
     'webpack_loader',
