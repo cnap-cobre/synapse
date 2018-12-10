@@ -204,6 +204,9 @@ API_BASE_URL_DROPBOX = 'https://www.dropbox.com'
 API_BASE_URL_DROPBOX_API = 'https://api.dropboxapi.com'
 API_BASE_URL_DROPBOX_CONTENT = 'https://content.dropboxapi.com'
 API_BASE_URL_GLOBUS = 'https://auth.globus.org'
+API_BASE_URL_GLOBUS_TRANSFER = 'https://transfer.api.globusonline.org/v0.10'
+API_BASE_URL_GLOBUS_SEARCH = 'https://search.api.globus.org'
+
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 150 * 1024 * 1024
 

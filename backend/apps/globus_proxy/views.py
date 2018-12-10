@@ -30,3 +30,11 @@ class GlobusProxy(HttpProxy):
             return profile.tokens.filter(app__provider='globus').get().token
 
         return token.token
+
+
+class GlobusTransferProxy(GlobusProxy):
+    base_url = settings.API_BASE_URL_GLOBUS_TRANSFER
+
+
+class GlobusSearchProxy(GlobusProxy):
+    base_url = settings.API_BASE_URL_GLOBUS_SEARCH

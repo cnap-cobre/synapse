@@ -23,7 +23,8 @@ from apps.main import views as main_views
 from apps.agave_proxy.views import AgaveProxy
 from apps.dropbox_proxy.views import DropboxProxy, \
         DropboxApiProxy, DropboxContentProxy
-from apps.globus_proxy.views import GlobusProxy
+from apps.globus_proxy.views import GlobusProxy, \
+        GlobusTransferProxy, GlobusSearchProxy
 
 urlpatterns = [
     re_path('^admin/', include('smuggler.urls')),
@@ -42,6 +43,12 @@ urlpatterns = [
     re_path(r'^dropbox/', DropboxProxy.as_view(
         url_name='dbpx'
     ), name='dbpx'),
+    re_path(r'^globus/transfer/', GlobusTransferProxy.as_view(
+        url_name='gltfpx'
+    ), name='gltfpx'),
+    re_path(r'^globus/search/', GlobusSearchProxy.as_view(
+        url_name='glsrchpx'
+    ), name='glsrchpx'),
     re_path(r'^globus/', GlobusProxy.as_view(
         url_name='glpx'
     ), name='glpx'),
