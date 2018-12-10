@@ -18,10 +18,11 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     dropbox = SocialAccountSerializer(many=True, read_only=True)
     agave = SocialAccountSerializer(many=True, read_only=True)
     globus = SocialAccountSerializer(many=True, read_only=True)
+    jupyter = SocialAccountSerializer(many=True, read_only=True)
     user = full.UserSerializer(read_only=True)
 
     class Meta:
         model = Profile
         fields = ('id', 'institution', 'gravatar',
-                  'dropbox', 'agave', 'globus', 'user',
+                  'dropbox', 'agave', 'globus', 'jupyter', 'user',
                   'url')

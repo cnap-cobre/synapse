@@ -28,6 +28,10 @@ class Profile(models.Model):
         )
 
     @property
+    def jupyter(self):
+        return SocialAccount.objects.filter(user=self.user, provider='jupyterhub')
+
+    @property
     def dropbox(self):
         return SocialAccount.objects.filter(user=self.user, provider='dropbox')
 
