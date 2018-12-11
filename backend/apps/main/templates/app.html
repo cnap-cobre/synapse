@@ -6,5 +6,7 @@
 {% endblock %}
 
 {% block extra_body %}
+  <script src="https://browser.sentry-cdn.com/4.4.1/bundle.min.js" crossorigin="anonymous"></script>
+  <script>Sentry.init({ dsn: 'https://7f6b72e821e94d77ae0bdcf131f5ce82@sentry.io/1341366' });</script>
  {% render_bundle 'app' %}
 {% endblock %}
