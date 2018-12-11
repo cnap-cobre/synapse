@@ -169,7 +169,6 @@ class HttpProxy(LoginRequiredMixin, View):
             'Authorization': 'Bearer ' + self.get_auth_token(request),
         }
         request_url = self.get_full_url(self.url)
-        print(request_url, headers)
         response = requests.get(request_url, headers=headers)
         django_response = HttpResponse(response, status=response.status_code)
         for header in response.headers:
